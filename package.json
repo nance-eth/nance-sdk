@@ -1,0 +1,26 @@
+{
+  "name": "nance-sdk",
+  "version": "1.0.0",
+  "description": "SDK for https://nance.app",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nance-eth/nance-sdk.git"
+  },
+  "keywords": [
+    "nance",
+    "sdk"
+  ],
+  "author": "nance",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nance-eth/nance-sdk/issues"
+  },
+  "homepage": "https://github.com/nance-eth/nance-sdk#readme",
+  "dependencies": {
+    "@jigglyjams/juice-sdk-v3": "^3.2.2-alpha"
+  }
+}
