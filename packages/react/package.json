@@ -30,10 +30,10 @@
   },
   "homepage": "https://github.com/nance-eth/nance-sdk#readme",
   "dependencies": {
+    "@nance/nance-sdk": "file:../core",
     "react": "^18.2.0",
     "swr": "^2.2.4",
-    "tslib": "^2.6.2",
-    "@nance/nance-sdk": "^1.0.0"
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
     "@types/node": "^20.8.9",

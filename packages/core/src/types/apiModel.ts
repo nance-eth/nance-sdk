@@ -57,6 +57,18 @@ export interface SpaceProposalRequest extends BaseRequest {
 
 export type SpaceInfoRequest = BaseRequest;
 
+export interface ProposalsRequest extends BaseRequest {
+  cycle?: string | null | undefined;
+  keyword?: string | null | undefined;
+  limit?: number | null | undefined;
+  page?: number | null | undefined;
+  author?: string | null | undefined;
+}
+
+export interface ProposalRequest extends BaseRequest {
+  hash: string;
+}
+
 export interface ProposalUploadRequest extends BaseRequest {
   proposal: Proposal;
 }
@@ -79,4 +91,66 @@ export interface ConfigSpaceRequest extends BaseRequest {
 
 export interface EditPayoutsRequest extends BaseRequest {
   payouts: SQLPayout[];
+}
+
+export interface FetchReconfigureData {
+  transaction: NanceBasicTransaction;
+  nonce: string;
+  safe: string;
+}
+
+export interface NanceBasicTransaction {
+  address: string;
+  bytes: string;
+}
+
+export type ProposalUploadPayload = {
+  hash: string;
+}
+
+export interface ProposalDeleteRequest {
+  hash: string;
+}
+
+export type ConfigSpacePayload = {
+  space: string;
+  spaceOwner: string;
+}
+
+export type CreateFormValues = {
+  config: {
+    name: string;
+    discord: DiscordConfig;
+    proposalIdPrefix: string;
+    juicebox: JuiceboxConfig;
+    snapshot: SnapshotConfig;
+  }
+  governanceCycleForm: GovernanceCycleForm
+  dryRun: boolean;
+}
+
+export type DiscordConfig = {
+  guildId: string;
+  roles: DiscordConfigRoles;
+  channelIds: DiscordConfigChannels;
+  reminder: { channelIds: string[]; }
+}
+
+export type DiscordConfigChannels = {
+  proposals: string;
+}
+
+export type DiscordConfigRoles = {
+  governance: string;
+}
+
+export type JuiceboxConfig = {
+  projectId: string;
+  gnosisSafeAddress: string;
+}
+
+export type SnapshotConfig = {
+  space: string;
+  minTokenPassingAmount: number;
+  passingRatio: number;
 }
