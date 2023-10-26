@@ -1,7 +1,7 @@
 import { DateEvent, GovernanceCycleForm, NanceConfig, Proposal } from './common';
 import { SQLPayout, DialogHandlerMessageIds } from './doltSchema';
 
-interface APIResponse<T> {
+export interface APIResponse<T> {
   success: boolean;
   error?: string;
   data: T;

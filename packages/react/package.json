@@ -1,0 +1,43 @@
+{
+  "name": "@nance/nance-hooks",
+  "version": "1.0.0",
+  "description": "hooks for https://nance.app",
+  "license": "MIT",
+  "module": "./dist/esm/index.js",
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/cjs/index.d.ts",
+  "scripts": {
+    "prebuild": "rm -Rf dist/",
+    "build": "yarn node:build && yarn browser:build",
+    "browser:build": "tsc --project ./tsconfig.browser.json",
+    "node:build": "tsc --project ./tsconfig.node.json",
+    "dev": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nance-eth/nance-sdk.git"
+  },
+  "keywords": [
+    "nance",
+    "sdk",
+    "hook",
+    "react"
+  ],
+  "author": "nance",
+  "bugs": {
+    "url": "https://github.com/nance-eth/nance-sdk/issues"
+  },
+  "homepage": "https://github.com/nance-eth/nance-sdk#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "swr": "^2.2.4",
+    "tslib": "^2.6.2",
+    "@nance/nance-sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.9",
+    "@types/react": "^18.2.33",
+    "typescript": "^5.2.2"
+  }
+}
