@@ -1,4 +1,4 @@
 ## Packages
 
-* `core` - Core functionality and types
-* `react` - React hooks
+* [core](./packages/core) - Core functionality and types
+* [react](./packages/react) - React hooks
