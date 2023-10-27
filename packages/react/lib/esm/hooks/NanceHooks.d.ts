@@ -1,0 +1,13 @@
+import { APIResponse, ProposalsRequest, SpaceInfoRequest, ProposalRequest, ProposalUploadRequest, FetchReconfigureRequest, SpaceInfo, Proposal, FetchReconfigureData, ProposalUploadPayload, ProposalsPacket, SQLPayout, ConfigSpacePayload, CreateFormValues } from "@nance/nance-sdk";
+export declare function useAllSpaceInfo(shouldFetch?: boolean): import("swr/_internal").SWRResponse<APIResponse<SpaceInfo[]>, any, any>;
+export declare function useSpaceInfo(args: SpaceInfoRequest, shouldFetch?: boolean): import("swr/_internal").SWRResponse<APIResponse<SpaceInfo>, string, any>;
+export declare function useCurrentPayouts(space: string, cycle: string | undefined, shouldFetch?: boolean): import("swr/_internal").SWRResponse<APIResponse<SQLPayout[]>, string, any>;
+export declare function usePrivateProposals(space: string, shouldFetch?: boolean): import("swr/_internal").SWRResponse<APIResponse<Proposal[]>, string, any>;
+export declare function useProposals(args: ProposalsRequest, shouldFetch?: boolean): import("swr/_internal").SWRResponse<APIResponse<ProposalsPacket>, string, any>;
+export declare function useProposalsInfinite(args: ProposalsRequest, shouldFetch?: boolean): import("swr/infinite").SWRInfiniteResponse<APIResponse<ProposalsPacket>, string>;
+export declare function useProposal(args: ProposalRequest, shouldFetch?: boolean): import("swr/_internal").SWRResponse<APIResponse<Proposal>, string, any>;
+export declare function useReconfigureRequest(args: FetchReconfigureRequest, shouldFetch?: boolean): import("swr/_internal").SWRResponse<APIResponse<FetchReconfigureData>, string, any>;
+export declare function useProposalUpload(space: string, proposalId: string | undefined, shouldFetch?: boolean): import("swr/mutation").SWRMutationResponse<APIResponse<ProposalUploadPayload>, any, string, ProposalUploadRequest>;
+export declare function useProposalDelete(space: string, uuid: string | undefined, shouldFetch?: boolean): import("swr/mutation").SWRMutationResponse<APIResponse<ProposalUploadPayload>, any, string, never>;
+export declare function useCreateSpace(shouldFetch?: boolean): import("swr/mutation").SWRMutationResponse<APIResponse<ConfigSpacePayload>, any, string, CreateFormValues>;
+export declare function fetchCreatedProposals(apiUrl: string, space: string | undefined, author: string | undefined, prefix?: string): Promise<APIResponse<ProposalsPacket>>;

@@ -12,7 +12,6 @@ import {
   Proposal,
   FetchReconfigureData,
   ProposalUploadPayload,
-  ProposalDeleteRequest,
   ProposalsPacket,
   SQLPayout,
   ConfigSpacePayload,
@@ -33,7 +32,7 @@ function jsonFetcher(): Fetcher<APIResponse<any>, string> {
 }
 
 export function useAllSpaceInfo(shouldFetch: boolean = true) {
-  const apiUrl = useContext(NanceContext);
+  const { apiUrl } = useContext(NanceContext);
   return useSWR<APIResponse<SpaceInfo[]>>(
     shouldFetch ? `${apiUrl}/ish/all` : null,
     jsonFetcher()
@@ -41,7 +40,7 @@ export function useAllSpaceInfo(shouldFetch: boolean = true) {
 }
 
 export function useSpaceInfo(args: SpaceInfoRequest, shouldFetch: boolean = true) {
-  const apiUrl = useContext(NanceContext);
+  const { apiUrl } = useContext(NanceContext);
   return useSWR<APIResponse<SpaceInfo>, string>(
     shouldFetch ? `${apiUrl}/${args.space}` : null,
     jsonFetcher()
@@ -49,7 +48,7 @@ export function useSpaceInfo(args: SpaceInfoRequest, shouldFetch: boolean = true
 }
 
 export function useCurrentPayouts(space: string, cycle: string | undefined, shouldFetch: boolean = true) {
-  const apiUrl = useContext(NanceContext);
+  const { apiUrl } = useContext(NanceContext);
   const urlParams = new URLSearchParams();
   if (cycle) {
     urlParams.set('cycle', cycle);
@@ -62,7 +61,7 @@ export function useCurrentPayouts(space: string, cycle: string | undefined, shou
 }
 
 export function usePrivateProposals(space: string, shouldFetch: boolean = true) {
-  const apiUrl = useContext(NanceContext);
+  const { apiUrl } = useContext(NanceContext);
   return useSWR<APIResponse<Proposal[]>, string>(
     shouldFetch ? `${apiUrl}/${space}/privateProposals` : null,
     jsonFetcher(),
@@ -70,7 +69,7 @@ export function usePrivateProposals(space: string, shouldFetch: boolean = true) 
 }
 
 export function useProposals(args: ProposalsRequest, shouldFetch: boolean = true) {
-  const apiUrl = useContext(NanceContext);
+  const { apiUrl } = useContext(NanceContext);
   const urlParams = new URLSearchParams();
   if (args.cycle) {
     urlParams.set('cycle', args.cycle);
@@ -92,7 +91,7 @@ export function useProposals(args: ProposalsRequest, shouldFetch: boolean = true
 }
 
 export function useProposalsInfinite(args: ProposalsRequest, shouldFetch: boolean = true) {
-  const apiUrl = useContext(NanceContext);
+  const { apiUrl } = useContext(NanceContext);
   const urlParams = new URLSearchParams();
   if (args.cycle) {
     urlParams.set('cycle', args.cycle);
@@ -117,7 +116,7 @@ export function useProposalsInfinite(args: ProposalsRequest, shouldFetch: boolea
 }
 
 export function useProposal(args: ProposalRequest, shouldFetch: boolean = true) {
-  const apiUrl = useContext(NanceContext);
+  const { apiUrl } = useContext(NanceContext);
   return useSWR<APIResponse<Proposal>, string>(
     shouldFetch ? `${apiUrl}/${args.space}/proposal/${args.hash}` : null,
     jsonFetcher(),
@@ -125,7 +124,7 @@ export function useProposal(args: ProposalRequest, shouldFetch: boolean = true) 
 }
 
 export function useReconfigureRequest(args: FetchReconfigureRequest, shouldFetch: boolean = true) {
-  const apiUrl = useContext(NanceContext);
+  const { apiUrl } = useContext(NanceContext);
   return useSWR<APIResponse<FetchReconfigureData>, string>(
     shouldFetch ? `${apiUrl}/${args.space}/reconfigure?version=${args.version}&address=${args.address}&datetime=${args.datetime}&network=${args.network}` : null,
     jsonFetcher(),
@@ -165,7 +164,7 @@ async function creator(url: RequestInfo | URL, { arg }: { arg: CreateFormValues 
 }
 
 export function useProposalUpload(space: string, proposalId: string | undefined, shouldFetch: boolean = true) {
-  const apiUrl = useContext(NanceContext);
+  const { apiUrl } = useContext(NanceContext);
   let url = `${apiUrl}/${space}/proposals`;
   let fetcher = uploader;
   if (proposalId) {
@@ -179,7 +178,7 @@ export function useProposalUpload(space: string, proposalId: string | undefined,
 }
 
 export function useProposalDelete(space: string, uuid: string | undefined, shouldFetch: boolean = true) {
-  const apiUrl = useContext(NanceContext);
+  const { apiUrl } = useContext(NanceContext);
   let url = `${apiUrl}/${space}/proposal/${uuid}`;
   let fetcher = deleter;
   return useSWRMutation(
@@ -204,7 +203,7 @@ async function editor(url: RequestInfo | URL, { arg }: { arg: ProposalUploadRequ
   return json;
 }
 
-async function deleter(url: RequestInfo | URL, { arg }: { arg: ProposalDeleteRequest }) {
+async function deleter(url: RequestInfo | URL) {
   const res = await fetch(url, {
     method: 'DELETE',
     headers: {
@@ -220,7 +219,7 @@ async function deleter(url: RequestInfo | URL, { arg }: { arg: ProposalDeleteReq
 }
 
 export function useCreateSpace(shouldFetch: boolean = true) {
-  const apiUrl = useContext(NanceContext);
+  const { apiUrl } = useContext(NanceContext);
   const url = `${apiUrl}/ish/config`;
   let fetcher = creator;
   return useSWRMutation(

@@ -1,38 +1,20 @@
 {
+  "compilerOptions": {
+    "target": "ESnext",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "outDir": "lib/cjs",
+    "baseUrl": "src/",
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx"
+  },
   "include": [
     "src"
-  ],
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "commonjs",
-    "outDir": "./dist/cjs/",
-    "rootDir": "./src",
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "esModuleInterop": true,
-    "importHelpers": true,
-    "declaration": true,
-    "sourceMap": false,
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "paths": {
-      "*": [
-        "src/*",
-        "node_modules/*"
-      ]
-    },
-    "resolveJsonModule": true
-  },
-  "exclude": [
-    "examples"
   ]
 }
