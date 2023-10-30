@@ -1958,15 +1958,19 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@nance/nance-hooks@file:../..":
+"@nance/nance-hooks@^1.0.0":
   version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@nance/nance-hooks/-/nance-hooks-1.0.0.tgz#4b1f4aa9cc46f4c53cfd80e76d4ba3ad9ebb202d"
+  integrity sha512-leh08dUhtA3lEF6BZ9SRXR3+zagLeVtmyUWu8Rc3HYE17OXJ640yLWCsRE0dnJpjQpi9M8JzRnCrodwPs7EheA==
   dependencies:
-    "@nance/nance-sdk" "file:../../../../../../../Library/Caches/Yarn/v6/npm-@nance-nance-hooks-1.0.0-3c748fa9-cd80-4505-8d24-be3eda4954e8-1698646713113/node_modules/@nance/core"
+    "@nance/nance-sdk" "^1.0.1"
     swr "^2.2.4"
     tslib "^2.6.2"
 
-"@nance/nance-sdk@file:../../../core":
-  version "1.0.0"
+"@nance/nance-sdk@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@nance/nance-sdk/-/nance-sdk-1.0.1.tgz#90e05fcf92da207fe16c382424c419d05072371e"
+  integrity sha512-xADXkTVvvFw5tSdS3WvWV5o4Kujife66XFSV8+lxQRIij+4XeXXiOJ7ZP/SCfRY3bN2HgNSKFkzpiGJpbsuq0A==
   dependencies:
     "@ethersproject/providers" "^5.6.8"
     "@jigglyjams/juice-sdk-v3" "^3.2.2-alpha"
