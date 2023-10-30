@@ -5,17 +5,18 @@
 ## Usage
 
 Wrap components with `NanceContext.Provider` and pass `apiUrl` as a prop. And then you can use nance hooks.
+Check full example [here](./examples/nance-demo).
 
 ```typescript
-import { NanceConetxt, useSpaceInfo } from "@nance/nance-hooks";
+import { NanceProvider, useSpaceInfo } from "@nance/nance-hooks";
 
 const apiUrl = "https://api.nance.app";
 
 export default function SpacePage() {
   return (
-    <NanceConetxt.Provider value={{apiUrl}}>
+    <NanceProvider apiUrl={apiUrl}>
       <SpaceInfoCard />
-    </NanceConetxt.Provider>
+    </NanceProvider>
   )
 }
 

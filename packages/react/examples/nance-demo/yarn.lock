@@ -1961,8 +1961,7 @@
 "@nance/nance-hooks@file:../..":
   version "1.0.0"
   dependencies:
-    "@nance/nance-sdk" "file:../../../../../../../Library/Caches/Yarn/v6/npm-@nance-nance-hooks-1.0.0-e6bf0a48-009f-46d0-a78a-1246dfc8c724-1698422241701/node_modules/@nance/core"
-    react "^18.2.0"
+    "@nance/nance-sdk" "file:../../../../../../../Library/Caches/Yarn/v6/npm-@nance-nance-hooks-1.0.0-3c748fa9-cd80-4505-8d24-be3eda4954e8-1698646713113/node_modules/@nance/core"
     swr "^2.2.4"
     tslib "^2.6.2"
 
