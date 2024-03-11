@@ -1,0 +1,44 @@
+{
+  "name": "@nance/nance-editor",
+  "version": "1.1.0",
+  "description": "proposal editor https://nance.app",
+  "license": "MIT",
+  "module": "./lib/esm/index.js",
+  "main": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "prebuild": "rm -Rf lib/",
+    "build": "yarn node:build && yarn browser:build && cp ./src/editor.css ./lib/editor.css",
+    "browser:build": "tsc --project ./tsconfig.browser.json",
+    "node:build": "tsc --project ./tsconfig.node.json",
+    "dev": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nance-eth/nance-sdk.git"
+  },
+  "keywords": [
+    "nance",
+    "sdk",
+    "hook",
+    "react"
+  ],
+  "author": "nance",
+  "bugs": {
+    "url": "https://github.com/nance-eth/nance-sdk/issues"
+  },
+  "homepage": "https://github.com/nance-eth/nance-sdk#readme",
+  "dependencies": {
+    "@toast-ui/react-editor": "^3.2.3",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.9",
+    "@types/react": "^18.2.33",
+    "typescript": "^5.2.2"
+  }
+}
