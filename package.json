@@ -1,11 +1,4 @@
 {
-  "name": "nance-sdk",
-  "version": "0.0.1-alpha",
-  "description": "Juicebox SDK monorepo",
-  "main": "index.js",
-  "repository": "https://github.com/nance-eth/nance-sdk",
-  "license": "MIT",
-  "private": true,
   "workspaces": [
     "./packages/*"
   ],
