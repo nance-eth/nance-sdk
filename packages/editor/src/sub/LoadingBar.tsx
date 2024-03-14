@@ -1,35 +1,35 @@
 import React, { useState } from "react";
 
-export const LoadingBar = () => {
+export default function LoadingBar() {
   const [imageUploading, setImageUploading] = useState(0);
 
   const loadingBarFileSize = (fileSize: number) => {
-    const time = Math.round(fileSize / (10 * 1000)) * 10;
+    const MIN_INTERVAL = 20;
+    const MAX_INTERVAL = 60;
+    const MAX_PROGRESS = 100;
+
+    const updateTime = Math.max(
+      MIN_INTERVAL,
+      Math.min(MAX_INTERVAL, Math.round(fileSize / (10 * 1024)))
+    );
+    const progressIncrement = 5;
     let progress = 0;
+
     const interval = setInterval(() => {
-      progress += 10;
-      if (progress > 100) {
+      progress += progressIncrement;
+      if (progress >= MAX_PROGRESS) {
+        setImageUploading(0);
         clearInterval(interval);
       } else {
         setImageUploading(progress);
       }
-    }, time);
-    return interval;
+    }, updateTime);
   };
 
   return {
     Component: () => (
-      <div>
-        <div aria-hidden="true">
-          <div className="overflow-hidden rounded-full bg-white">
-            <div className="h-2 rounded-full bg-indigo-600" style={{ width: `${imageUploading}%` }} />
-          </div>
-        </div>
-      </div>
+      <div style={{ height: '2px', backgroundColor: '#4f46e5', width: `${imageUploading}%` }} />
     ),
-    setImageUploading,
     loadingBarFileSize
   };
 };
-
-export default LoadingBar;

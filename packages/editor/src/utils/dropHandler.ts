@@ -4,7 +4,14 @@ import { setMarkdown, insertLink } from "./editor";
 import { uploadBlob } from "./uploadBlob";
 import { FileUploadIPFSProps } from "../types";
 
-export const dropHandler = (editor: RefObject<Editor>, fileUploadIPFS: FileUploadIPFSProps) => {
+export const dropHandler = (
+  editorRef: RefObject<Editor>,
+  fileUploadIPFS: FileUploadIPFSProps,
+  loadingBarFileSize: (size: number) => void
+) => {
+
+  const editor = editorRef.current;
+
   const handleFileDrop = async (e: DragEvent) => {
     e.preventDefault();
     e.stopImmediatePropagation(); // was running multiple times for some reason
@@ -18,8 +25,7 @@ export const dropHandler = (editor: RefObject<Editor>, fileUploadIPFS: FileUploa
 
     // if pdf, upload to ipfs and insert link
     if (file && file.name.toLowerCase().endsWith(".pdf")) {
-      const fileName = file.name.split(".")[0];
-      uploadBlob(file, fileUploadIPFS).then((url) => insertLink(editor, url, fileName));
+      uploadBlob(file, fileUploadIPFS, loadingBarFileSize).then((url) => insertLink(editor, url, file.name));
     }
   };
   window.addEventListener("drop", handleFileDrop);

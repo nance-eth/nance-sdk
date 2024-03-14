@@ -1640,8 +1640,10 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@nance/nance-editor@file:../../":
-  version "1.1.0"
+"@nance/nance-editor@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@nance/nance-editor/-/nance-editor-1.2.0.tgz#11f829a595c02e9487dea04ac6acd75f3d8b6a30"
+  integrity sha512-Xmluu/TywFZQK9Xbamfw8++v2vC9UzpPr6wsP9IzLAiJc2vUxaBh1MWrhLX9PByHH72R7LVYPl/oqzDrFoLIlA==
   dependencies:
     "@toast-ui/react-editor" "^3.2.3"
 

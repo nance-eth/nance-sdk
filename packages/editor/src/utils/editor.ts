@@ -1,16 +1,15 @@
-import type { RefObject } from "react";
 import type { Editor } from "@toast-ui/react-editor";
 
-export const getMarkdown = (editorRef: RefObject<Editor>) => {
-  return editorRef.current?.getInstance().getMarkdown() || "";
+export const getMarkdown = (editor: Editor) => {
+  return editor?.getInstance().getMarkdown() || "";
 };
 
-export const setMarkdown = (editorRef: RefObject<Editor>, markdown: string) => {
-  editorRef.current?.getInstance().setMarkdown(markdown, false);
+export const setMarkdown = (editor: Editor, markdown: string) => {
+  editor.getInstance().setMarkdown(markdown, false);
 };
 
-export const insertLink = (editorRef: RefObject<Editor>, url: string, text: string) => {
-  editorRef.current?.getInstance().exec("addLink", {
+export const insertLink = (editor: Editor, url: string, text: string) => {
+  editor.getInstance().exec("addLink", {
     linkUrl: url,
     linkText: text,
   });
