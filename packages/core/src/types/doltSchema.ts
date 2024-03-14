@@ -1,4 +1,4 @@
-import { NanceConfig, JBSplitStruct, Action, DateEvent } from './common';
+import { NanceConfig, JBSplitStruct, Action, DateEvent } from "./common";
 
 export type SQLProposal = {
   uuid: string;
@@ -59,7 +59,7 @@ export type GovernanceCycle = {
   cycleNumber: number;
   startDatetime: Date;
   endDatetime: Date;
-  jbV1FundingCycle?: number,
+  jbV1FundingCycle?: number;
   jbV2FundingCycle?: number;
   jbV3FundingCycle?: number;
   acceptingProposals: boolean;
@@ -76,8 +76,9 @@ export type DialogHandlerMessageIds = {
 };
 
 export type SpaceConfig = {
-  space: string,
-  spaceOwners: string[],
+  space: string;
+  displayName: string | null;
+  spaceOwners: string[];
   cid: string;
   config: NanceConfig;
   calendar: DateEvent[];

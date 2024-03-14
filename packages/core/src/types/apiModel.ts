@@ -1,5 +1,10 @@
-import { DateEvent, GovernanceCycleForm, NanceConfig, Proposal } from './common';
-import { SQLPayout, DialogHandlerMessageIds } from './doltSchema';
+import {
+  DateEvent,
+  GovernanceCycleForm,
+  NanceConfig,
+  Proposal,
+} from "./common";
+import { SQLPayout, DialogHandlerMessageIds } from "./doltSchema";
 
 export interface APIResponse<T> {
   success: boolean;
@@ -15,10 +20,10 @@ export type SpaceInfo = {
   snapshotSpace: string;
   juiceboxProjectId: string;
   transactorAddress?: {
-    type: 'safe' | 'governor';
+    type: "safe" | "governor";
     network: string;
     address: string;
-  }
+  };
   dolthubLink: string;
 };
 
@@ -35,7 +40,11 @@ type ProposalInfo = {
   minTokenPassingAmount: number;
 };
 
-export type ProposalsPacket = { proposalInfo: ProposalInfo; proposals: Proposal[]; hasMore: boolean; };
+export type ProposalsPacket = {
+  proposalInfo: ProposalInfo;
+  proposals: Proposal[];
+  hasMore: boolean;
+};
 
 export type ProposalsQueryResponse = APIResponse<ProposalsPacket>;
 
@@ -47,7 +56,7 @@ export type SpaceInfoResponse = APIResponse<SpaceInfo>;
 
 export type APIErrorResponse = APIResponse<undefined>;
 
-interface BaseRequest {
+export interface BaseRequest {
   space: string;
 }
 
@@ -85,7 +94,7 @@ export interface ConfigSpaceRequest extends BaseRequest {
   owners: string[];
   cycleTriggerTime: string;
   cycleStageLengths: number[];
-  governanceCycleForm: GovernanceCycleForm
+  governanceCycleForm: GovernanceCycleForm;
   dryrun?: boolean;
 }
 
@@ -106,7 +115,7 @@ export interface NanceBasicTransaction {
 
 export type ProposalUploadPayload = {
   hash: string;
-}
+};
 
 export interface ProposalDeleteRequest {
   hash: string;
@@ -115,7 +124,7 @@ export interface ProposalDeleteRequest {
 export type ConfigSpacePayload = {
   space: string;
   spaceOwner: string;
-}
+};
 
 export type CreateFormValues = {
   config: {
@@ -124,33 +133,33 @@ export type CreateFormValues = {
     proposalIdPrefix: string;
     juicebox: JuiceboxConfig;
     snapshot: SnapshotConfig;
-  }
-  governanceCycleForm: GovernanceCycleForm
+  };
+  governanceCycleForm: GovernanceCycleForm;
   dryRun: boolean;
-}
+};
 
 export type DiscordConfig = {
   guildId: string;
   roles: DiscordConfigRoles;
   channelIds: DiscordConfigChannels;
-  reminder: { channelIds: string[]; }
-}
+  reminder: { channelIds: string[] };
+};
 
 export type DiscordConfigChannels = {
   proposals: string;
-}
+};
 
 export type DiscordConfigRoles = {
   governance: string;
-}
+};
 
 export type JuiceboxConfig = {
   projectId: string;
   gnosisSafeAddress: string;
-}
+};
 
 export type SnapshotConfig = {
   space: string;
   minTokenPassingAmount: number;
   passingRatio: number;
-}
+};
