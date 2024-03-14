@@ -1,14 +1,12 @@
 {
   "name": "@nance/nance-sdk",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "SDK for https://nance.app",
   "license": "MIT",
   "module": "./dist/esm/index.js",
   "main": "./dist/cjs/index.js",
   "types": "./dist/cjs/index.d.ts",
-  "files": [
-    "/dist"
-  ],
+  "files": ["/dist"],
   "funding": "https://juicebox.money/@nance-app",
   "scripts": {
     "prebuild": "rm -Rf dist/",
@@ -22,10 +20,7 @@
     "type": "git",
     "url": "git+https://github.com/nance-eth/nance-sdk.git"
   },
-  "keywords": [
-    "nance",
-    "sdk"
-  ],
+  "keywords": ["nance", "sdk"],
   "author": "nance",
   "bugs": {
     "url": "https://github.com/nance-eth/nance-sdk/issues"
