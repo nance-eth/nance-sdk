@@ -9,7 +9,12 @@ export default function NanceEditor(props: NanceEditorProps) {
 
   const [dropHandlerSetup, setDropHandlerSetup] = React.useState(false);
 
-  const { onEditorChange, initialValue, fileUploadIPFS} = props;
+  const {
+    onEditorChange,
+    initialValue,
+    fileUploadIPFS,
+    darkMode,
+  } = props;
   
   // setup loading bar
   const {
@@ -46,6 +51,7 @@ export default function NanceEditor(props: NanceEditorProps) {
             uploadBlob(blob, fileUploadIPFS, loadingBarFileSize).then((url) => cb(url));
           },
         }}
+        theme={darkMode ? "dark" : "light"}
       />
     </div>
   );

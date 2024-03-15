@@ -1,5 +1,6 @@
 import { NanceEditor } from '@nance/nance-editor';
-import "@nance/nance-editor/lib/editor.css";
+import "@nance/nance-editor/lib/css/editor.css";
+// import "@nance/nance-editor/lib/css/dark.css";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           gateway: "https://nance.infura-ipfs.io",
           auth: "Basic ..."
         }}
+        // darkMode={true}
       />
     </div>
   );
