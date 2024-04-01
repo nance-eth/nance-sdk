@@ -13,8 +13,8 @@ export interface Proposal {
   title: string;
   body?: string;
   governanceCycle?: number;
-  createdTime: Date;
-  lastEditedTime: Date;
+  createdTime: string;
+  lastEditedTime: string;
   status: string;
   proposalId: number | null;
   author?: string;
@@ -31,6 +31,12 @@ export interface Proposal {
   proposalSummary?: string;
   threadSummary?: string;
 }
+
+export type NewProposal = Pick<Proposal,
+  "title" | "body" | "actions" | "status" | "authorDiscordId">;
+
+export type UpdateProposal = Pick<Proposal,
+  "uuid" | "title" | "body" | "actions" | "status" | "authorDiscordId">;
 
 export type Action = {
   type: "Payout" | "Reserve" | "Transfer" | "Custom Transaction";

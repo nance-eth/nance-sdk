@@ -3,7 +3,9 @@ import {
   GovernanceCycleForm,
   GuildxyzConfig,
   NanceConfig,
+  NewProposal,
   Proposal,
+  UpdateProposal,
 } from "./common";
 import { SQLPayout, DialogHandlerMessageIds } from "./doltSchema";
 
@@ -17,7 +19,7 @@ export type SpaceInfo = {
   name: string;
   displayName: string;
   currentCycle: number;
-  cycleStartDate: Date;
+  cycleStartDate: string;
   currentEvent: DateEvent;
   spaceOwners: string[];
   snapshotSpace: string;
@@ -56,6 +58,7 @@ export type ProposalQueryResponse = APIResponse<Proposal>;
 export type PayoutsQueryResponse = APIResponse<SQLPayout[]>;
 export type SpaceInfoResponse = APIResponse<SpaceInfo>;
 export type ProposalUploadResponse = APIResponse<{ uuid: string }>;
+export type ProposalUpdateResponse = APIResponse<{ uuid: string }>;
 export type ProposalDeleteResponse = APIResponse<{ affectedRows: number }>;
 export type APIErrorResponse = APIResponse<undefined>;
 
@@ -82,7 +85,11 @@ export interface ProposalRequest extends BaseRequest {
 }
 
 export interface ProposalUploadRequest extends BaseRequest {
-  proposal: Proposal;
+  proposal: NewProposal;
+}
+
+export interface ProposalUpdateRequest extends BaseRequest {
+  proposal: UpdateProposal;
 }
 
 export interface FetchReconfigureRequest extends BaseRequest {
