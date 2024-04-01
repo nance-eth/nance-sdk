@@ -21,6 +21,27 @@ export type SQLProposal = {
   discussionURL?: string;
   ipfsCID?: string;
   actions: Action[];
+  proposalSummary?: string;
+  threadSummary?: string;
+};
+
+export type SQLSnapshotProposal = {
+  snapshotSpace: string;
+  snapshotId: string;
+  title: string;
+  body: string;
+  authorAddress: string;
+  discussionURL: string;
+  startTimestamp: number;
+  endTimestamp: number;
+  voteType: string;
+  proposalStatus: string;
+  quorum: number;
+  votes: number;
+  choices: string[];
+  scores: number[];
+  scoresTotal: number;
+  proposalSummary: string;
 };
 
 export type SQLPayout = {
@@ -77,17 +98,18 @@ export type DialogHandlerMessageIds = {
 
 export type SpaceConfig = {
   space: string;
-  displayName: string | null;
+  displayName?: string;
   spaceOwners: string[];
   cid: string;
   config: NanceConfig;
-  calendar: DateEvent[];
-  cycleTriggerTime: string;
-  cycleStageLengths: number[];
-  dialogHandlerMessageIds: DialogHandlerMessageIds;
+  calendar?: DateEvent[];
   lastUpdated: Date;
-  cycleDayLastUpdated: Date;
+  cycleTriggerTime: string;
+  cycleStageLengths?: number[];
+  dialogHandlerMessageIds: DialogHandlerMessageIds;
   currentGovernanceCycle: number;
+  autoEnable?: 0 | 1;
+  template?: JSON;
 };
 
 export type SQLTransfer = {

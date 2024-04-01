@@ -1,6 +1,7 @@
 import {
   DateEvent,
   GovernanceCycleForm,
+  GuildxyzConfig,
   NanceConfig,
   Proposal,
 } from "./common";
@@ -14,7 +15,9 @@ export interface APIResponse<T> {
 
 export type SpaceInfo = {
   name: string;
+  displayName: string;
   currentCycle: number;
+  cycleStartDate: Date;
   currentEvent: DateEvent;
   spaceOwners: string[];
   snapshotSpace: string;
@@ -23,11 +26,13 @@ export type SpaceInfo = {
     type: "safe" | "governor";
     network: string;
     address: string;
-  };
+  }
   dolthubLink: string;
+  nextProposalId: number;
+  guildxyz?: GuildxyzConfig;
 };
 
-export type SpaceInfoExtended = SpaceInfo & {
+export type SpaceInfoExtended = Omit<SpaceInfo, "nextProposalId" | "dolthubLink"> & {
   currentDay: number;
   cycleTriggerTime: string;
   dialog: DialogHandlerMessageIds;
@@ -47,13 +52,11 @@ export type ProposalsPacket = {
 };
 
 export type ProposalsQueryResponse = APIResponse<ProposalsPacket>;
-
-export type ProposalMarkdownResponse = APIResponse<Proposal>;
-
+export type ProposalQueryResponse = APIResponse<Proposal>;
 export type PayoutsQueryResponse = APIResponse<SQLPayout[]>;
-
 export type SpaceInfoResponse = APIResponse<SpaceInfo>;
-
+export type ProposalUploadResponse = APIResponse<{ uuid: string }>;
+export type ProposalDeleteResponse = APIResponse<{ affectedRows: number }>;
 export type APIErrorResponse = APIResponse<undefined>;
 
 export interface BaseRequest {
@@ -75,7 +78,7 @@ export interface ProposalsRequest extends BaseRequest {
 }
 
 export interface ProposalRequest extends BaseRequest {
-  hash: string;
+  uuid: string;
 }
 
 export interface ProposalUploadRequest extends BaseRequest {
@@ -91,7 +94,8 @@ export interface FetchReconfigureRequest extends BaseRequest {
 
 export interface ConfigSpaceRequest extends BaseRequest {
   config: NanceConfig;
-  owners: string[];
+  network: string;
+  spaceOwners: { address: string }[];
   cycleTriggerTime: string;
   cycleStageLengths: number[];
   governanceCycleForm: GovernanceCycleForm;
@@ -114,11 +118,11 @@ export interface NanceBasicTransaction {
 }
 
 export type ProposalUploadPayload = {
-  hash: string;
+  uuid: string;
 };
 
 export interface ProposalDeleteRequest {
-  hash: string;
+  uuid: string;
 }
 
 export type ConfigSpacePayload = {

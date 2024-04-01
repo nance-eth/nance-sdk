@@ -99,7 +99,7 @@ export function getProposal(
   gateway: string = DEFAULT_API_GATEWAY,
 ) {
   return genericFetchAndThrowIfError<Proposal>(
-    `/${args.space}/proposal/${args.hash}`,
+    `/${args.space}/proposal/${args.uuid}`,
     gateway,
   );
 }
