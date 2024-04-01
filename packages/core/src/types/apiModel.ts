@@ -134,7 +134,7 @@ export interface ProposalDeleteRequest {
 
 export type ConfigSpacePayload = {
   space: string;
-  spaceOwner: string;
+  spaceOwners: string;
 };
 
 export type CreateFormValues = {
@@ -145,6 +145,7 @@ export type CreateFormValues = {
     juicebox: JuiceboxConfig;
     snapshot: SnapshotConfig;
   };
+  spaceOwners: string;
   governanceCycleForm: GovernanceCycleForm;
   dryRun: boolean;
 };
