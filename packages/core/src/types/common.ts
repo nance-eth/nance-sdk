@@ -129,11 +129,11 @@ export type BasicTransaction = {
 
 export type GovernanceCycleForm = {
   time: FormTime;
-  startDate: string;
-  temperatureCheckLength: string;
-  voteLength: string;
-  delayLength: string;
-  executionLength: string;
+  startDate: Date;
+  temperatureCheckLength: number;
+  voteLength: number;
+  delayLength: number;
+  executionLength: number;
 };
 
 export type FormTime = {
