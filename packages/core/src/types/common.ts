@@ -16,7 +16,7 @@ export interface Proposal {
   createdTime: string;
   lastEditedTime: string;
   status: string;
-  proposalId: number | null;
+  proposalId?: number;
   author?: string;
   coauthors?: string[];
   discussionThreadURL: string;
@@ -123,7 +123,7 @@ export type VoteResults = {
   votes: number;
   scoresState?: string;
   scoresTotal?: number;
-  quorumMet?: number;
+  quorumMet?: boolean;
 };
 
 export type BasicTransaction = {
