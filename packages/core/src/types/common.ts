@@ -27,7 +27,7 @@ export interface Proposal {
   authorAddress?: string;
   authorDiscordId?: string;
   temperatureCheckVotes?: number[];
-  actions?: Action[];
+  actions: Action[];
   proposalSummary?: string;
   threadSummary?: string;
 }
@@ -41,7 +41,7 @@ export type UpdateProposal = Pick<Proposal,
 export type Action = {
   type: "Payout" | "Reserve" | "Transfer" | "Custom Transaction";
   name?: string;
-  uuid: string;
+  uuid?: string;
   payload: Payout | Reserve | Transfer | CustomTransaction;
 };
 
@@ -117,10 +117,14 @@ export type SnapshotVoteSettings = {
   delay: number;
 };
 
-export type VoteResults = Pick<
-  SnapshotProposal,
-  "choices" | "scores" | "votes" | "scores_total"
-> & { quorumMet: boolean };
+export type VoteResults = {
+  choices: string[];
+  scores: number[];
+  votes: number;
+  scoresState?: string;
+  scoresTotal?: number;
+  quorumMet?: number;
+};
 
 export type BasicTransaction = {
   address: string;
