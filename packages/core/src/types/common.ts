@@ -1,28 +1,35 @@
-import { JBSplitStruct } from "@jigglyjams/juice-sdk-v3/dist/cjs/types/contracts/JBController";
+export type JBSplitStruct = {
+  preferClaimed: boolean;
+  preferAddToBalance: boolean;
+  percent: string;
+  projectId: string;
+  beneficiary: string;
+  lockedUntil: string;
+  allocator: string;
+}
 
-export { JBSplitStruct };
 export interface Proposal {
-  hash: string;
+  uuid: string;
   title: string;
   body?: string;
   governanceCycle?: number;
-  date?: string;
+  createdTime: Date;
+  lastEditedTime: Date;
   status: string;
   proposalId: number | null;
   author?: string;
   coauthors?: string[];
   discussionThreadURL: string;
-  ipfsURL: string;
-  voteURL: string;
+  ipfsURL?: string;
+  voteURL?: string;
   voteSetup?: SnapshotVoteOptions;
   voteResults?: VoteResults;
-  version?: string;
   authorAddress?: string;
   authorDiscordId?: string;
   temperatureCheckVotes?: number[];
-  createdTime?: Date;
-  lastEditedTime?: Date;
   actions?: Action[];
+  proposalSummary?: string;
+  threadSummary?: string;
 }
 
 export type Action = {
@@ -46,7 +53,7 @@ export type Reserve = { splits: JBSplitStruct[] };
 
 export type Transfer = {
   contract: string;
-  tokenName: string;
+  chainId?: number;
   to: string;
   amount: string;
   decimals: number;
@@ -88,6 +95,8 @@ export type SnapshotProposal = {
   author?: string;
   discussion?: string;
   ipfs?: string;
+  space?: { id: string };
+  quorum?: number;
 };
 
 export type SnapshotVoteResultsId = Pick<
@@ -159,6 +168,7 @@ export interface NanceConfig {
       imageNames: string[];
     };
   };
+  guildxyz?: GuildxyzConfig;
   proposalIdPrefix: string;
   dolt: DoltConfig;
   snapshot: {
@@ -181,6 +191,7 @@ export const GovernanceEventName = [
   "Snapshot Vote",
   "Execution",
   "Delay",
+  "Unknown",
 ] as const;
 
 export type GovernanceEvent = (typeof GovernanceEventName)[number];
@@ -189,6 +200,12 @@ export interface DateEvent {
   title: GovernanceEvent;
   start: string;
   end: string;
+}
+
+export interface InternalDateEvent {
+  title: GovernanceEvent;
+  start: Date;
+  end: Date;
 }
 
 export interface PollResults {
@@ -228,4 +245,9 @@ export type GovernorProposeTransaction = {
   calldatas: string[];
   description: string;
   signatures?: string[];
+};
+
+export type GuildxyzConfig = {
+  id: number;
+  roles: number[];
 };
