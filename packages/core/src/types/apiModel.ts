@@ -86,17 +86,14 @@ export interface ProposalRequest extends BaseRequest {
 
 export interface ProposalUploadRequest extends BaseRequest {
   proposal: NewProposal;
+  uploaderAddress?: string;
+  uploaderSignature?: string;
 }
 
 export interface ProposalUpdateRequest extends BaseRequest {
   proposal: UpdateProposal;
-}
-
-export interface FetchReconfigureRequest extends BaseRequest {
-  version: string;
-  address: string;
-  datetime: string;
-  network: string;
+  uploaderAddress?: string;
+  uploaderSignature?: string;
 }
 
 export interface ConfigSpaceRequest extends BaseRequest {

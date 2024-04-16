@@ -15,7 +15,7 @@ export interface Proposal {
   governanceCycle?: number;
   createdTime: string;
   lastEditedTime: string;
-  status: string;
+  status: ProposalStatus;
   proposalId?: number;
   author?: string;
   coauthors?: string[];
@@ -27,13 +27,19 @@ export interface Proposal {
   authorAddress?: string;
   authorDiscordId?: string;
   temperatureCheckVotes?: number[];
-  actions: Action[];
+  actions?: Action[];
   proposalSummary?: string;
   threadSummary?: string;
 }
 
-export type NewProposal = Pick<Proposal,
-  "title" | "body" | "actions" | "status" | "authorDiscordId">;
+export type NewProposal = {
+  uuid?: string;
+  title: string;
+  body: string;
+  status: ProposalStatus;
+  discordId?: string;
+  actions?: Action[];
+};
 
 export type UpdateProposal = Pick<Proposal,
   "uuid" | "title" | "body" | "actions" | "status" | "authorDiscordId">;
@@ -205,6 +211,18 @@ export const GovernanceEventName = [
 ] as const;
 
 export type GovernanceEvent = (typeof GovernanceEventName)[number];
+
+export const ProposalStatusNames = [
+  "Draft",
+  "Discussion",
+  "Temperature Check",
+  "Voting",
+  "Approved",
+  "Cancelled",
+  "Archived",
+] as const;
+
+export type ProposalStatus = (typeof ProposalStatusNames)[number];
 
 export interface DateEvent {
   title: GovernanceEvent;
