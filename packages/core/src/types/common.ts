@@ -11,10 +11,10 @@ export type JBSplitStruct = {
 export interface Proposal {
   uuid: string;
   title: string;
-  body?: string;
+  body: string;
   governanceCycle?: number;
   createdTime: string;
-  lastEditedTime: string;
+  lastEditedTime?: string;
   status: ProposalStatus;
   proposalId?: number;
   author?: string;

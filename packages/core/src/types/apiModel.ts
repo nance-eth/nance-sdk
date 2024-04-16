@@ -126,7 +126,8 @@ export type ProposalUploadPayload = {
 };
 
 export interface ProposalDeleteRequest {
-  uuid: string;
+  deleterAddress: string;
+  deleterSignature: string;
 }
 
 export type ConfigSpacePayload = {
