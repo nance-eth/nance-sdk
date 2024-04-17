@@ -1,6 +1,6 @@
 import {
   APIResponse,
-  Proposal,
+  ProposalPacket,
   ProposalRequest,
   ProposalsPacket,
   ProposalsRequest,
@@ -98,7 +98,7 @@ export function getProposal(
   args: ProposalRequest,
   gateway: string = DEFAULT_API_GATEWAY,
 ) {
-  return genericFetchAndThrowIfError<Proposal>(
+  return genericFetchAndThrowIfError<ProposalPacket>(
     `/${args.space}/proposal/${args.uuid}`,
     gateway,
   );
