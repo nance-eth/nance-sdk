@@ -45,6 +45,7 @@ type ProposalInfo = {
   snapshotSpace: string;
   proposalIdPrefix: string;
   minTokenPassingAmount: number;
+  nextProposalId: number;
 };
 
 export type ProposalsPacket = {
@@ -53,8 +54,13 @@ export type ProposalsPacket = {
   hasMore: boolean;
 };
 
+export type ProposalPacket = {
+  proposal: Proposal;
+  proposalInfo: ProposalInfo;
+};
+
 export type ProposalsQueryResponse = APIResponse<ProposalsPacket>;
-export type ProposalQueryResponse = APIResponse<Proposal>;
+export type ProposalQueryResponse = APIResponse<ProposalPacket>;
 export type PayoutsQueryResponse = APIResponse<SQLPayout[]>;
 export type SpaceInfoResponse = APIResponse<SpaceInfo>;
 export type ProposalUploadResponse = APIResponse<{ uuid: string }>;
