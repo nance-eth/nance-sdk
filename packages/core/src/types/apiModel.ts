@@ -54,10 +54,7 @@ export type ProposalsPacket = {
   hasMore: boolean;
 };
 
-export type ProposalPacket = {
-  proposal: Proposal;
-  proposalInfo: ProposalInfo;
-};
+export type ProposalPacket = Proposal & { proposalInfo: ProposalInfo };
 
 export type ProposalsQueryResponse = APIResponse<ProposalsPacket>;
 export type ProposalQueryResponse = APIResponse<ProposalPacket>;
@@ -132,8 +129,9 @@ export type ProposalUploadPayload = {
 };
 
 export interface ProposalDeleteRequest {
-  deleterAddress: string;
-  deleterSignature: string;
+  uuid: string;
+  deleterAddress?: string;
+  deleterSignature?: string;
 }
 
 export type ConfigSpacePayload = {

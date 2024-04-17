@@ -27,7 +27,7 @@ export interface Proposal {
   authorAddress?: string;
   authorDiscordId?: string;
   temperatureCheckVotes?: number[];
-  actions?: Action[];
+  actions: Action[];
   proposalSummary?: string;
   threadSummary?: string;
 }
