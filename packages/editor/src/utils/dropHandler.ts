@@ -20,12 +20,12 @@ export const dropHandler = (
     const file = e.dataTransfer?.files[0];
     if (file && file.name.toLowerCase().endsWith(".md")) {
       const md = await file.text();
-      setMarkdown(editor, md);
+      setMarkdown(md);
     }
 
     // if pdf, upload to ipfs and insert link
     if (file && file.name.toLowerCase().endsWith(".pdf")) {
-      uploadBlob(file, fileUploadIPFS, loadingBarFileSize).then((url) => insertLink(editor, url, file.name));
+      uploadBlob(file, fileUploadIPFS, loadingBarFileSize).then((url) => insertLink(url, file.name));
     }
   };
   window.addEventListener("drop", handleFileDrop);

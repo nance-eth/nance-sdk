@@ -354,6 +354,10 @@
   background-color: #55575f;
 }
 
+.toastui-editor-dark .toastui-editor-contents ol > li::before {
+  color: #777980;
+}
+
 .toastui-editor-dark .toastui-editor-contents hr {
   border-color: #55575f;
 }

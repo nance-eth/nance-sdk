@@ -1,5 +1,5 @@
 import NanceEditor from "./MarkdownEditor";
-import { getMarkdown, setMarkdown } from "utils";
+import { getMarkdown, setMarkdown } from "./utils";
 import { NanceEditorProps, FileUploadIPFSProps } from "./types";
 
 export {

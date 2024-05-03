@@ -19,6 +19,6 @@ export default [
         targets: [{ src: "src/css/*.css", dest: "lib/css" }],
       }),
     ],
-    external: ["react", "@toast-ui/editor", "@toast-ui/editor/dist/toastui-editor-viewer"],
+    external: ["react", "@toast-ui/**"],
   },
 ];

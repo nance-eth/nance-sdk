@@ -3,9 +3,9 @@ import { Editor } from "@toast-ui/react-editor";
 import Loading from "./sub/LoadingBar";
 import { dropHandler, getMarkdown, uploadBlob } from "./utils";
 import { NanceEditorProps } from "./types";
+import { ref } from "./ref";
 
 export default function NanceEditor(props: NanceEditorProps) {
-  const ref = React.createRef<Editor>()
 
   const [dropHandlerSetup, setDropHandlerSetup] = React.useState(false);
 
@@ -43,7 +43,7 @@ export default function NanceEditor(props: NanceEditorProps) {
         initialEditType="wysiwyg"
         useCommandShortcut={true}
         onChange={() => {
-          onEditorChange?.(getMarkdown(ref.current))
+          onEditorChange?.(getMarkdown())
         }}
         hooks={{
           addImageBlobHook(blob, cb) {

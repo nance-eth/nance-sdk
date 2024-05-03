@@ -1,6 +1,6 @@
 {
   "name": "@nance/nance-editor",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "proposal editor https://nance.app",
   "license": "MIT",
   "module": "./lib/esm/index.js",
