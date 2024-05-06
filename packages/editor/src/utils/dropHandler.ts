@@ -1,4 +1,4 @@
-// import { setMarkdown, insertLink } from "./editor";
+import { setMarkdown, insertLink } from "./editor";
 import { uploadBlob } from "./uploadBlob";
 import { FileUploadIPFSProps } from "../types";
 
@@ -17,12 +17,12 @@ export const dropHandler = (
     const file = e.dataTransfer?.files[0];
     if (file && file.name.toLowerCase().endsWith(".md")) {
       const md = await file.text();
-      // setMarkdown(ref, md);
+      setMarkdown(ref, md);
     }
 
     // if pdf, upload to ipfs and insert link
     if (file && file.name.toLowerCase().endsWith(".pdf")) {
-      // uploadBlob(file, fileUploadIPFS, loadingBarFileSize).then((url) => insertLink(ref, url, file.name));
+      uploadBlob(file, fileUploadIPFS, loadingBarFileSize).then((url) => insertLink(ref, url, file.name));
     }
   };
   window.addEventListener("drop", handleFileDrop);

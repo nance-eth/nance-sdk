@@ -1,6 +1,5 @@
 import { EditorRef } from "types";
 
-
 export const getMarkdown = (ref: EditorRef) => {
   return ref?.current?.getInstance().getMarkdown() || "";
 };

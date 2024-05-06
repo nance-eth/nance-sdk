@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle } from "react";
+import React, { forwardRef } from "react";
 import { Editor } from "@toast-ui/react-editor";
 import Loading from "./sub/LoadingBar";
 import { uploadBlob, dropHandler, getMarkdown } from "./utils";
