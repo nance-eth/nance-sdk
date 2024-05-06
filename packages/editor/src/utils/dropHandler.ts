@@ -1,16 +1,13 @@
-import { Editor } from "@toast-ui/react-editor";
-import { RefObject } from "react";
-import { setMarkdown, insertLink } from "./editor";
+// import { setMarkdown, insertLink } from "./editor";
 import { uploadBlob } from "./uploadBlob";
 import { FileUploadIPFSProps } from "../types";
 
 export const dropHandler = (
-  editorRef: RefObject<Editor>,
+  ref: any,
   fileUploadIPFS: FileUploadIPFSProps,
   loadingBarFileSize: (size: number) => void
 ) => {
 
-  const editor = editorRef.current;
 
   const handleFileDrop = async (e: DragEvent) => {
     e.preventDefault();
@@ -20,12 +17,12 @@ export const dropHandler = (
     const file = e.dataTransfer?.files[0];
     if (file && file.name.toLowerCase().endsWith(".md")) {
       const md = await file.text();
-      setMarkdown(md);
+      // setMarkdown(ref, md);
     }
 
     // if pdf, upload to ipfs and insert link
     if (file && file.name.toLowerCase().endsWith(".pdf")) {
-      uploadBlob(file, fileUploadIPFS, loadingBarFileSize).then((url) => insertLink(url, file.name));
+      // uploadBlob(file, fileUploadIPFS, loadingBarFileSize).then((url) => insertLink(ref, url, file.name));
     }
   };
   window.addEventListener("drop", handleFileDrop);

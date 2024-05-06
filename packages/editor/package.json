@@ -1,6 +1,6 @@
 {
   "name": "@nance/nance-editor",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "proposal editor https://nance.app",
   "license": "MIT",
   "module": "./lib/esm/index.js",
@@ -32,6 +32,7 @@
     "@toast-ui/react-editor": "^3.2.3"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",

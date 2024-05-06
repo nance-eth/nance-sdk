@@ -1,14 +1,15 @@
-import { ref } from "../ref";
+import { EditorRef } from "types";
 
-export const getMarkdown = () => {
+
+export const getMarkdown = (ref: EditorRef) => {
   return ref?.current?.getInstance().getMarkdown() || "";
 };
 
-export const setMarkdown = (markdown: string) => {
+export const setMarkdown = (ref: EditorRef, markdown: string) => {
   ref?.current?.getInstance().setMarkdown(markdown, false);
 };
 
-export const insertLink = (url: string, text: string) => {
+export const insertLink = (ref: EditorRef, url: string, text: string) => {
   ref?.current?.getInstance().exec("addLink", {
     linkUrl: url,
     linkText: text,

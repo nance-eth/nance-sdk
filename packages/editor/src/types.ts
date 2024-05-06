@@ -1,3 +1,6 @@
+import type { Editor } from "@toast-ui/react-editor";
+
+type EditorRef = React.MutableRefObject<Editor>;
 
 type NanceEditorProps = {
   onEditorChange?: (md: string) => void;
@@ -11,4 +14,4 @@ type FileUploadIPFSProps = {
   auth: string;
 }
 
-export { NanceEditorProps, FileUploadIPFSProps };
+export { NanceEditorProps, FileUploadIPFSProps, EditorRef };

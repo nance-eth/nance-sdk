@@ -1,11 +1,10 @@
-import React from "react";
+import React, { forwardRef, useImperativeHandle } from "react";
 import { Editor } from "@toast-ui/react-editor";
 import Loading from "./sub/LoadingBar";
-import { dropHandler, getMarkdown, uploadBlob } from "./utils";
+import { uploadBlob, dropHandler, getMarkdown } from "./utils";
 import { NanceEditorProps } from "./types";
-import { ref } from "./ref";
 
-export default function NanceEditor(props: NanceEditorProps) {
+export const NanceEditor = forwardRef((props: NanceEditorProps, ref: React.MutableRefObject<any>) => {
 
   const [dropHandlerSetup, setDropHandlerSetup] = React.useState(false);
 
@@ -25,7 +24,7 @@ export default function NanceEditor(props: NanceEditorProps) {
   React.useEffect(() => {
     // setup drop handler, any way to do it without this???
     // Editor onLoad doesn't seem to be ready in time
-    if (ref.current && fileUploadIPFS && !dropHandlerSetup) {
+    if (ref?.current && fileUploadIPFS && !dropHandlerSetup) {
       dropHandler(ref, fileUploadIPFS, loadingBarFileSize);
       setDropHandlerSetup(true);
     }
@@ -43,7 +42,7 @@ export default function NanceEditor(props: NanceEditorProps) {
         initialEditType="wysiwyg"
         useCommandShortcut={true}
         onChange={() => {
-          onEditorChange?.(getMarkdown())
+          if (onEditorChange) onEditorChange(getMarkdown(ref));
         }}
         hooks={{
           addImageBlobHook(blob, cb) {
@@ -55,4 +54,4 @@ export default function NanceEditor(props: NanceEditorProps) {
       />
     </div>
   );
-}
+});
