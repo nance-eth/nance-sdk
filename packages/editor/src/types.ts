@@ -1,7 +1,3 @@
-import type { Editor } from "@toast-ui/react-editor";
-
-type EditorRef = React.MutableRefObject<Editor>;
-
 type NanceEditorProps = {
   onEditorChange?: (md: string) => void;
   initialValue?: string;
@@ -9,9 +5,12 @@ type NanceEditorProps = {
   darkMode?: boolean;
 };
 
+type GetMarkdown = () => string | null;
+type SetMarkdown = (markdown: string) => void;
+
 type FileUploadIPFSProps = {
   gateway: string;
   auth: string;
 }
 
-export { NanceEditorProps, FileUploadIPFSProps, EditorRef };
+export { NanceEditorProps, FileUploadIPFSProps, GetMarkdown, SetMarkdown };

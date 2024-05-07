@@ -1,5 +1,5 @@
 import { uploadBlob } from "./uploadBlob";
-import { setMarkdown, getMarkdown, insertLink } from "./editor";
+import { insertLink, getMarkdown, setMarkdown } from "./editor";
 import { dropHandler } from "./dropHandler";
 
-export { uploadBlob, dropHandler, setMarkdown, getMarkdown, insertLink};
+export { uploadBlob, dropHandler, insertLink, getMarkdown, setMarkdown };

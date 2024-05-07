@@ -1,11 +1,11 @@
-import React, { forwardRef } from "react";
+import React from "react";
 import { Editor } from "@toast-ui/react-editor";
 import Loading from "./sub/LoadingBar";
+import { ref } from "./ref";
 import { uploadBlob, dropHandler, getMarkdown } from "./utils";
 import { NanceEditorProps } from "./types";
 
-export const NanceEditor = forwardRef((props: NanceEditorProps, ref: React.MutableRefObject<any>) => {
-
+export function NanceEditor(props: NanceEditorProps) {
   const [dropHandlerSetup, setDropHandlerSetup] = React.useState(false);
 
   const {
@@ -15,20 +15,17 @@ export const NanceEditor = forwardRef((props: NanceEditorProps, ref: React.Mutab
     darkMode,
   } = props;
   
-  // setup loading bar
   const {
     Component: LoadingBar,
     loadingBarFileSize,
   } = Loading();
 
   React.useEffect(() => {
-    // setup drop handler, any way to do it without this???
-    // Editor onLoad doesn't seem to be ready in time
     if (ref?.current && fileUploadIPFS && !dropHandlerSetup) {
-      dropHandler(ref, fileUploadIPFS, loadingBarFileSize);
+      dropHandler(fileUploadIPFS, loadingBarFileSize);
       setDropHandlerSetup(true);
     }
-  }, [ref]);
+  }, []);
 
   return (
     <div>
@@ -42,7 +39,7 @@ export const NanceEditor = forwardRef((props: NanceEditorProps, ref: React.Mutab
         initialEditType="wysiwyg"
         useCommandShortcut={true}
         onChange={() => {
-          if (onEditorChange) onEditorChange(getMarkdown(ref));
+          if (onEditorChange) onEditorChange(getMarkdown());
         }}
         hooks={{
           addImageBlobHook(blob, cb) {
@@ -53,5 +50,5 @@ export const NanceEditor = forwardRef((props: NanceEditorProps, ref: React.Mutab
         theme={darkMode ? "dark" : "light"}
       />
     </div>
-  );
-});
+  )
+};
