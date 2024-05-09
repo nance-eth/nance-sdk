@@ -1,6 +1,6 @@
 {
   "name": "@nance/nance-hooks",
-  "version": "1.0.3",
+  "version": "2.0.1",
   "description": "hooks for https://nance.app",
   "license": "MIT",
   "module": "./lib/esm/index.js",
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/nance-eth/nance-sdk#readme",
   "dependencies": {
-    "@nance/nance-sdk": "^1.0.3",
+    "@nance/nance-sdk": "^2.0.1",
     "swr": "^2.2.4",
     "tslib": "^2.6.2"
   },
