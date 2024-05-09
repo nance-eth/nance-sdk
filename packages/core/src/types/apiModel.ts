@@ -7,7 +7,7 @@ import {
   Proposal,
   UpdateProposal,
 } from "./common";
-import { SQLPayout, DialogHandlerMessageIds } from "./doltSchema";
+import { DialogHandlerMessageIds } from "./doltSchema";
 
 export interface APIResponse<T> {
   success: boolean;
@@ -58,7 +58,6 @@ export type ProposalPacket = Proposal & { proposalInfo: ProposalInfo };
 
 export type ProposalsQueryResponse = APIResponse<ProposalsPacket>;
 export type ProposalQueryResponse = APIResponse<ProposalPacket>;
-export type PayoutsQueryResponse = APIResponse<SQLPayout[]>;
 export type SpaceInfoResponse = APIResponse<SpaceInfo>;
 export type ProposalUploadResponse = APIResponse<{ uuid: string }>;
 export type ProposalUpdateResponse = APIResponse<{ uuid: string }>;
@@ -107,21 +106,6 @@ export interface ConfigSpaceRequest extends BaseRequest {
   cycleStageLengths: number[];
   governanceCycleForm: GovernanceCycleForm;
   dryrun?: boolean;
-}
-
-export interface EditPayoutsRequest extends BaseRequest {
-  payouts: SQLPayout[];
-}
-
-export interface FetchReconfigureData {
-  transaction: NanceBasicTransaction;
-  nonce: string;
-  safe: string;
-}
-
-export interface NanceBasicTransaction {
-  address: string;
-  bytes: string;
 }
 
 export type ProposalUploadPayload = {

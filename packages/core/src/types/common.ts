@@ -22,7 +22,7 @@ export interface Proposal {
   discussionThreadURL: string;
   ipfsURL?: string;
   voteURL?: string;
-  voteSetup?: SnapshotVoteOptions;
+  voteSetup?: SnapshotVoteSetupOptions;
   voteResults?: VoteResults;
   authorAddress?: string;
   authorDiscordId?: string;
@@ -51,21 +51,28 @@ export type Action = {
   payload: Payout | Reserve | Transfer | CustomTransaction;
 };
 
+// FUTURE
+// export type Currency = "USD" | "ETH";
+
 export type Payout = {
-  type?: "address" | "project" | "allocator";
   address?: string;
+  allocator?: string;
   project?: number;
-  amountUSD: number;
   count: number;
-  payName?: string;
-  uuid?: string;
+  governanceCycleStart: number;
+  amountUSD: number;
+  // FUTURE
+  // currency?: Currency;
+  // chainId?: number;
+  // amount?: string;
+  // governanceCycleEnd: number;
 };
 
 export type Reserve = { splits: JBSplitStruct[] };
 
 export type Transfer = {
-  contract: string;
-  chainId?: number;
+  contract: string; // if doing native transfer, contract is recipient address
+  chainId: number;
   to: string;
   amount: string;
   decimals: number;
@@ -80,7 +87,7 @@ export type CustomTransactionArg = {
 
 export type CustomTransaction = {
   contract: string;
-  chainId?: number;
+  chainId: number;
   value: string;
   // function approve(address guy, uint256 wad) returns (bool)
   // can pass as ABI
@@ -88,7 +95,6 @@ export type CustomTransaction = {
   functionName: string;
   args: CustomTransactionArg[];
   tenderlyId: string;
-  tenderlyStatus: string;
 };
 
 export type SnapshotProposal = {
@@ -132,11 +138,6 @@ export type VoteResults = {
   quorumMet?: boolean;
 };
 
-export type BasicTransaction = {
-  address: string;
-  bytes: string;
-};
-
 export type GovernanceCycleForm = {
   time: FormTime;
   startDate: Date;
@@ -156,7 +157,7 @@ export type FormTime = {
 export interface NanceConfig {
   name: string;
   juicebox: {
-    network: "mainnet" | "goerli";
+    network: string;
     projectId: string;
     gnosisSafeAddress: string;
     governorAddress: string;
@@ -247,32 +248,9 @@ export interface PollEmojis {
   voteNoEmoji: string;
 }
 
-export type SnapshotVoteOptions = {
+export type SnapshotVoteSetupOptions = {
   type: string;
   choices: string[];
-};
-
-export interface Signature {
-  address: string;
-  signature: string;
-  timestamp: number;
-}
-
-export type Network = "mainnet" | "goerli";
-
-export type PartialTransaction = {
-  to: string;
-  value: string;
-  data: string;
-  operation?: number;
-};
-
-export type GovernorProposeTransaction = {
-  targets: string[];
-  values: number[];
-  calldatas: string[];
-  description: string;
-  signatures?: string[];
 };
 
 export type GuildxyzConfig = {
