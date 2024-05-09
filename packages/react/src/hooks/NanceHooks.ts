@@ -14,6 +14,7 @@ import {
   SQLPayout,
   ConfigSpacePayload,
   CreateFormValues,
+  ProposalPacket,
 } from "@nance/nance-sdk";
 import { useContext } from "react";
 import { NanceContext } from "../contexts/NanceContext";
@@ -145,7 +146,7 @@ export function useProposal(
   shouldFetch: boolean = true,
 ) {
   const { apiUrl } = useContext(NanceContext);
-  return useSWR<APIResponse<Proposal>, string>(
+  return useSWR<APIResponse<ProposalPacket>, string>(
     shouldFetch ? `${apiUrl}/${args.space}/proposal/${args.uuid}` : null,
     jsonFetcher(),
   );
