@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/nance-eth/nance-sdk#readme",
   "dependencies": {
-    "@nance/nance-sdk": "^2.0.1",
+    "@nance/nance-sdk": "^2.1.1",
     "swr": "^2.2.4",
     "tslib": "^2.6.2"
   },

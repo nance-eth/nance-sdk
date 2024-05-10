@@ -7,7 +7,7 @@ import {
   Proposal,
   UpdateProposal,
 } from "./common";
-import { DialogHandlerMessageIds } from "./doltSchema";
+import { DialogHandlerMessageIds, SQLSpaceConfig } from "./doltSchema";
 
 export interface APIResponse<T> {
   success: boolean;
@@ -19,8 +19,10 @@ export type SpaceInfo = {
   name: string;
   displayName: string;
   currentCycle: number;
+  currentCycleDay: number;
   cycleStartDate: string;
   currentEvent: DateEvent;
+  nextEvents: DateEvent[];
   spaceOwners: string[];
   snapshotSpace: string;
   juiceboxProjectId: string;
@@ -35,7 +37,6 @@ export type SpaceInfo = {
 };
 
 export type SpaceInfoExtended = Omit<SpaceInfo, "nextProposalId" | "dolthubLink"> & {
-  currentDay: number;
   cycleTriggerTime: string;
   dialog: DialogHandlerMessageIds;
   config: NanceConfig;
@@ -47,6 +48,8 @@ type ProposalInfo = {
   minTokenPassingAmount: number;
   nextProposalId: number;
 };
+
+export type SpaceConfig = SQLSpaceConfig & { cycleStartReference: string; };
 
 export type ProposalsPacket = {
   proposalInfo: ProposalInfo;
@@ -131,7 +134,7 @@ export type CreateFormValues = {
     juicebox: JuiceboxConfig;
     snapshot: SnapshotConfig;
   };
-  spaceOwners: string;
+  spaceOwners: string[];
   governanceCycleForm: GovernanceCycleForm;
   dryRun: boolean;
 };

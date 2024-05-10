@@ -86,13 +86,13 @@ export type DialogHandlerMessageIds = {
   temperatureCheckEndAlert: string;
 };
 
-export type SpaceConfig = {
+export type SQLSpaceConfig = {
   space: string;
   displayName?: string;
   spaceOwners: string[];
   cid: string;
   config: NanceConfig;
-  cycleStartReference?: Date;
+  cycleStartReference: Date;
   lastUpdated: Date;
   cycleStageLengths?: number[];
   dialogHandlerMessageIds: DialogHandlerMessageIds;
