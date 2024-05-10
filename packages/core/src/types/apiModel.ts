@@ -49,7 +49,7 @@ type ProposalInfo = {
   nextProposalId: number;
 };
 
-export type SpaceConfig = SQLSpaceConfig & { cycleStartReference: string; };
+export type SpaceConfig = Omit<SQLSpaceConfig, "cycleStartReference"> & { cycleStartReference: string; };
 
 export type ProposalsPacket = {
   proposalInfo: ProposalInfo;
