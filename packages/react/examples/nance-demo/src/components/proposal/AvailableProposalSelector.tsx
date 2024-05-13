@@ -28,7 +28,7 @@ export default function AvailableProposalSelector(
       Choose a proposal to load: &nbsp;
       <select value={selectedProposal} onChange={(e) => setSelectedProposal(e.target.value)}>
         <option value="">-- Please choose a proposal --</option>
-        {proposalPacket.proposals.map(proposal => <option key={proposal.hash} value={proposal.hash}>{proposal.title}</option>)}
+        {proposalPacket.proposals.map(proposal => <option key={proposal.uuid} value={proposal.uuid}>{proposal.title}</option>)}
       </select>
     </label>
   )

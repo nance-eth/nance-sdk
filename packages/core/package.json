@@ -1,6 +1,6 @@
 {
   "name": "@nance/nance-sdk",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "SDK for https://nance.app",
   "license": "MIT",
   "module": "./dist/esm/index.js",
@@ -32,7 +32,8 @@
   },
   "homepage": "https://github.com/nance-eth/nance-sdk#readme",
   "dependencies": {
-    "tslib": "^2.6.2"
+    "tslib": "^2.6.2",
+    "yaml": "^2.4.2"
   },
   "devDependencies": {
     "@types/node": "^20.8.9",

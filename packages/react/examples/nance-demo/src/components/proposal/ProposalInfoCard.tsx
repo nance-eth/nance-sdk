@@ -2,7 +2,7 @@ import { useProposal } from '@nance/nance-hooks';
 
 export default function ProposalInfoCard({ space, proposalHash }: { space: string, proposalHash: string }) {
   const shouldFetch = proposalHash !== "";
-  const { data, isLoading, error } = useProposal({ space, hash: proposalHash }, shouldFetch);
+  const { data, isLoading, error } = useProposal({ space, uuid: proposalHash }, shouldFetch);
 
   if (!shouldFetch) {
     return null;
@@ -21,7 +21,7 @@ export default function ProposalInfoCard({ space, proposalHash }: { space: strin
   return (
     <div>
       <h3>{proposal.title}</h3>
-      <p>authored by {proposal.author || "Unknown"}</p>
+      <p>authored by {proposal.authorAddress || "Unknown"}</p>
 
       <h4>Proposal actions</h4>
       <p>{JSON.stringify(proposal.actions) || "No actions"}</p>
