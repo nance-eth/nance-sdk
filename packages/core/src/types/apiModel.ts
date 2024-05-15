@@ -3,9 +3,7 @@ import {
   GovernanceCycleForm,
   GuildxyzConfig,
   NanceConfig,
-  NewProposal,
   Proposal,
-  UpdateProposal,
 } from "./common";
 import { DialogHandlerMessageIds, SQLSpaceConfig } from "./doltSchema";
 
@@ -90,15 +88,15 @@ export interface ProposalRequest extends BaseRequest {
 }
 
 export interface ProposalUploadRequest extends BaseRequest {
-  proposal: NewProposal;
-  uploaderAddress?: string;
-  uploaderSignature?: string;
+  proposal: Proposal;
+  address?: string;
+  signature?: string;
 }
 
 export interface ProposalUpdateRequest extends BaseRequest {
-  proposal: UpdateProposal;
-  uploaderAddress?: string;
-  uploaderSignature?: string;
+  proposal: Proposal;
+  address?: string;
+  signature?: string;
 }
 
 export interface ConfigSpaceRequest extends BaseRequest {
@@ -117,8 +115,8 @@ export type ProposalUploadPayload = {
 
 export interface ProposalDeleteRequest {
   uuid: string;
-  deleterAddress?: string;
-  deleterSignature?: string;
+  address?: string;
+  signature?: string;
 }
 
 export type ConfigSpacePayload = {

@@ -1,5 +1,5 @@
 import YAML from "yaml";
-import { Action } from "./types";
+import { Action, Proposal, SnapshotTypes } from "./types";
 
 const actionsHeader = "```nance-actions\n--- nance-actions\n";
 const actionsFooter = "\n```";
@@ -22,7 +22,7 @@ export const getActionsFromBody = (body?: string): Action[] | null => {
 
 export const trimActionsFromBody = (body?: string) => {
   if (!body) return "";
-  return body.replace(new RegExp(`(${actionsHeader}[\\s\\S]*?${actionsFooter})`, "g"), "");
+  return body.replace(new RegExp(`(${actionsHeader}[\\s\\S]*?${actionsFooter})`, "g"), "").trim();
 }
 
 export const getActionYamlFromBody = (body?: string): string | null => {
@@ -35,3 +35,21 @@ export const getActionYamlFromBody = (body?: string): string | null => {
   }
   return null;
 };
+
+export const formatSnapshotProposalMessage = (address: string, proposal: Proposal, space: string, voteStart: Date, voteEnd: Date): SnapshotTypes.Proposal => {
+  return {
+    from: address,
+    space,
+    timestamp: Math.floor(Date.now() / 1000),
+    type: proposal.voteSetup?.type as SnapshotTypes.ProposalType || "basic",
+    title: proposal.title,
+    body: proposal.body,
+    discussion: "",
+    choices: proposal.voteSetup?.choices || ["For", "Against", "Abstain"],
+    start: Math.floor(voteStart.getTime() / 1000),
+    end: Math.floor(voteEnd.getTime() / 1000),
+    snapshot: 0, // TODO: snapshot block by date
+    plugins: JSON.stringify({}),
+    app: "nance"
+  };
+}

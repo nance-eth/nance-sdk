@@ -32,17 +32,11 @@ export interface Proposal {
   threadSummary?: string;
 }
 
-export type NewProposal = {
-  uuid?: string;
-  title: string;
-  body: string;
-  status: ProposalStatus;
-  discordId?: string;
-  actions?: Action[];
-};
+export type NewProposal = Pick<Proposal,
+  "title" | "body" | "status" | "authorDiscordId" | "actions">;
 
 export type UpdateProposal = Pick<Proposal,
-  "uuid" | "title" | "body" | "actions" | "status" | "authorDiscordId">;
+  "uuid" | "title" | "body" | "status" | "authorDiscordId">;
 
 export type Action = {
   type: "Payout" | "Reserve" | "Transfer" | "Custom Transaction";
@@ -257,3 +251,8 @@ export type GuildxyzConfig = {
   id: number;
   roles: number[];
 };
+
+export const domain = {
+  name: "Nance",
+  version: "2.0.0",
+}
