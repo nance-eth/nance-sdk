@@ -1,10 +1,11 @@
 {
-  "workspaces": [
-    "./packages/*"
-  ],
+  "workspaces": ["./packages/*"],
   "scripts": {
     "build:core": "yarn --cwd packages/core build",
     "build:react": "yarn --cwd packages/react build",
-    "build": "yarn build:core && yarn build:react"
+    "build": "yarn build:core && yarn build:react",
+    "publish:core": "yarn --cwd packages/core publish --access public",
+    "publish:react": "yarn --cwd packages/react publish --access public",
+    "publishAll": "yarn publish:core && yarn publish:react"
   }
 }
