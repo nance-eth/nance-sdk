@@ -1,12 +1,14 @@
 {
   "name": "@nance/nance-hooks",
-  "version": "2.3.0",
+  "version": "2.3.2",
   "description": "hooks for https://nance.app",
   "license": "MIT",
   "module": "./lib/esm/index.js",
   "main": "./lib/cjs/index.js",
   "types": "./lib/cjs/index.d.ts",
-  "files": ["/lib"],
+  "files": [
+    "/lib"
+  ],
   "funding": "https://juicebox.money/@nance-app",
   "scripts": {
     "prebuild": "rm -Rf dist/",
@@ -20,7 +22,12 @@
     "type": "git",
     "url": "git+https://github.com/nance-eth/nance-sdk.git"
   },
-  "keywords": ["nance", "sdk", "hook", "react"],
+  "keywords": [
+    "nance",
+    "sdk",
+    "hook",
+    "react"
+  ],
   "author": "nance",
   "bugs": {
     "url": "https://github.com/nance-eth/nance-sdk/issues"
