@@ -6,6 +6,7 @@
     "build": "yarn build:core && yarn build:react",
     "publish:core": "yarn --cwd packages/core publish --access public",
     "publish:react": "yarn --cwd packages/react publish --access public",
-    "publishAll": "yarn publish:core && yarn publish:react"
+    "publishAll": "yarn publish:core && node update.js && yarn publish:react",
+    "publishBeta": "yarn publish:core --tag beta && node update.js && yarn publish:react --tag beta"
   }
 }

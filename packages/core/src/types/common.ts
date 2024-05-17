@@ -45,6 +45,14 @@ export type Action = {
   payload: Payout | Reserve | Transfer | CustomTransaction;
 };
 
+export type SignProposalEnvelope = {
+  address: string;
+  signature: string;
+  message: string;
+  domain: { name: string; version: string; }
+  types: { Proposal: { name: string; type: string; }[] };
+}
+
 // FUTURE
 // export type Currency = "USD" | "ETH";
 

@@ -4,6 +4,7 @@ import {
   GuildxyzConfig,
   NanceConfig,
   Proposal,
+  SignProposalEnvelope,
 } from "./common";
 import { DialogHandlerMessageIds, SQLSpaceConfig } from "./doltSchema";
 
@@ -89,14 +90,12 @@ export interface ProposalRequest extends BaseRequest {
 
 export interface ProposalUploadRequest extends BaseRequest {
   proposal: Proposal;
-  address?: string;
-  signature?: string;
+  envelope?: SignProposalEnvelope;
 }
 
 export interface ProposalUpdateRequest extends BaseRequest {
   proposal: Proposal;
-  address?: string;
-  signature?: string;
+  envelope?: SignProposalEnvelope;
 }
 
 export interface ConfigSpaceRequest extends BaseRequest {

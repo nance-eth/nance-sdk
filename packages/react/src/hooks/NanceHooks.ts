@@ -8,10 +8,8 @@ import {
   ProposalRequest,
   ProposalUploadRequest,
   SpaceInfo,
-  Proposal,
   ProposalUploadPayload,
   ProposalsPacket,
-  SQLPayout,
   ConfigSpacePayload,
   CreateFormValues,
   ProposalPacket,
@@ -47,34 +45,6 @@ export function useSpaceInfo(
   const { apiUrl } = useContext(NanceContext);
   return useSWR<APIResponse<SpaceInfo>, string>(
     shouldFetch ? `${apiUrl}/${args.space}` : null,
-    jsonFetcher(),
-  );
-}
-
-export function useCurrentPayouts(
-  space: string,
-  cycle: string | undefined,
-  shouldFetch: boolean = true,
-) {
-  const { apiUrl } = useContext(NanceContext);
-  const urlParams = new URLSearchParams();
-  if (cycle) {
-    urlParams.set("cycle", cycle);
-  }
-
-  return useSWR<APIResponse<SQLPayout[]>, string>(
-    shouldFetch ? `${apiUrl}/${space}/payouts?` + urlParams.toString() : null,
-    jsonFetcher(),
-  );
-}
-
-export function usePrivateProposals(
-  space: string,
-  shouldFetch: boolean = true,
-) {
-  const { apiUrl } = useContext(NanceContext);
-  return useSWR<APIResponse<Proposal[]>, string>(
-    shouldFetch ? `${apiUrl}/${space}/privateProposals` : null,
     jsonFetcher(),
   );
 }
