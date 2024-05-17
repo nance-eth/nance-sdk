@@ -1,6 +1,6 @@
 {
   "name": "@nance/nance-hooks",
-  "version": "2.3.2",
+  "version": "2.4.0",
   "description": "hooks for https://nance.app",
   "license": "MIT",
   "module": "./lib/esm/index.js",
