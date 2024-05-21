@@ -44,11 +44,11 @@ export const formatSnapshotProposalMessage = (address: string, proposal: Proposa
     type: proposal.voteSetup?.type as SnapshotTypes.ProposalType || "basic",
     title: proposal.title,
     body: proposal.body,
-    discussion: "",
+    discussion: proposal.discussionThreadURL || "",
     choices: proposal.voteSetup?.choices || ["For", "Against", "Abstain"],
     start: Math.floor(voteStart.getTime() / 1000),
     end: Math.floor(voteEnd.getTime() / 1000),
-    snapshot: 0, // TODO: snapshot block by date
+    snapshot: 0, // TODO: snapshot block by date, maybe we just do it in client library since theres no provider in here
     plugins: JSON.stringify({}),
     app: "nance"
   };

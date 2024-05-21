@@ -1,3 +1,8 @@
+import {
+  Proposal as SnapshotSignProposal,
+  proposalTypes
+} from "./snapshot";
+
 export type JBSplitStruct = {
   preferClaimed: boolean;
   preferAddToBalance: boolean;
@@ -47,10 +52,12 @@ export type Action = {
 
 export type SignProposalEnvelope = {
   address: string;
-  signature: string;
-  message: string;
-  domain: { name: string; version: string; }
-  types: { Proposal: { name: string; type: string; }[] };
+  sig: string;
+  data: {
+    domain: { name: string; version: string; }
+    types: typeof proposalTypes;
+    message: SnapshotSignProposal;
+  }
 }
 
 // FUTURE
@@ -260,7 +267,9 @@ export type GuildxyzConfig = {
   roles: number[];
 };
 
+// match snapshot ingestor
+// https://github.com/snapshot-labs/snapshot-sequencer/blob/master/src/ingestor.ts#L17
 export const domain = {
-  name: "Nance",
-  version: "2.0.0",
+  name: "snapshot",
+  version: "0.1.4"
 }
