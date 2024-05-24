@@ -1,4 +1,3 @@
-import { NanceSignatureTypes } from "../constants";
 import { SnapshotSignatureNames } from "./signaturesSnapshot";
 import {
   Proposal as SnapshotProposal,
@@ -15,10 +14,47 @@ export type BasicNanceSignature = {
   message: SnapshotProposal | SnapshotCancelProposal;
 }
 
-export type GenericSignTypes = {
-  name: string;
-  type: string;
-};
+// ================ OUR SIGNATURES ===============
+// match snapshot ingestor
+// https://github.com/snapshot-labs/snapshot-sequencer/blob/master/src/ingestor.ts#L17
+export const domain = {
+  name: "snapshot",
+  version: "0.1.4"
+} as const;
+
+export const NanceSignatureTypesNames = [
+  "SnapshotSubmitProposal",
+  "SnapshotCancelProposal",
+  "NanceArchiveProposal",
+] as const;
+
+export type NanceSignatureTypes = (typeof NanceSignatureTypesNames)[number];
+
+export type NanceSignatureNames = typeof NanceSignatureTypesNames[number];
+
+type AllSignatureTypes = SnapshotSignatureNames & NanceSignatureNames;
+
+// ===== Archive Proposal =====
+export const archiveTypes = {
+  Archive: [
+    { name: 'from', type: 'address' },
+    { name: 'space', type: 'string' },
+    { name: 'timestamp', type: 'uint64' },
+    { name: 'proposal', type: 'string' }
+  ]
+}
+
+export type ArchiveProposal = {
+  from: string;
+  space: string;
+  timestamp: number;
+  proposal: string;
+}
+// ============================
+
+// MORE SIGNATURES HERE
+
+// ===============================================
 
 export const NanceSignatureTypesMap = {
   SnapshotSubmitProposal: snapshotProposalTypes,
@@ -32,4 +68,5 @@ export const NanceSignatureTypesMap = {
 export const NanceSignaturePrimaryTypesMap = {
   SnapshotSubmitProposal: "Proposal",
   SnapshotCancelProposal: "CancelProposal",
-} as const as Record<NanceSignatureTypes, SnapshotSignatureNames>;
+  NanceArchiveProposal: "Archive",
+} as const as Record<NanceSignatureTypes, AllSignatureTypes>;
