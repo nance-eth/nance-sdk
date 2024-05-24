@@ -1,4 +1,7 @@
-import { SnapshotSignatureNames } from "./signaturesSnapshot";
+import {
+  SnapshotProposalPrimaryType,
+  SnapshotCancelProposalPrimaryType
+} from "./signaturesSnapshot";
 import {
   Proposal as SnapshotProposal,
   proposalTypes as snapshotProposalTypes,
@@ -6,15 +9,6 @@ import {
   cancelProposal2Types as snapshotCancelProposal2Types,
 } from "./snapshot";
 
-// we have our own proposal types since we will need to sign things that are not Snapshot related
-export type BasicNanceSignature = {
-  address: string;
-  type: NanceSignatureTypes;
-  signature: string;
-  message: SnapshotProposal | SnapshotCancelProposal;
-}
-
-// ================ OUR SIGNATURES ===============
 // match snapshot ingestor
 // https://github.com/snapshot-labs/snapshot-sequencer/blob/master/src/ingestor.ts#L17
 export const domain = {
@@ -22,17 +16,9 @@ export const domain = {
   version: "0.1.4"
 } as const;
 
-export const NanceSignatureTypesNames = [
-  "SnapshotSubmitProposal",
-  "SnapshotCancelProposal",
-  "NanceArchiveProposal",
-] as const;
-
-export type NanceSignatureTypes = (typeof NanceSignatureTypesNames)[number];
-
-export type NanceSignatureNames = typeof NanceSignatureTypesNames[number];
-
-type AllSignatureTypes = SnapshotSignatureNames & NanceSignatureNames;
+// ===============================================
+// ================ OUR SIGNATURES ===============
+// ===============================================
 
 // ===== Archive Proposal =====
 export const archiveTypes = {
@@ -52,23 +38,60 @@ export type ArchiveProposal = {
 }
 // ============================
 
-// MORE SIGNATURES HERE
+// MORE SIGNATURES HERE...
 
 // ===============================================
 
-export const NanceSignatureTypesMap = {
-  SnapshotSubmitProposal: snapshotProposalTypes,
-  SnapshotCancelProposal: snapshotCancelProposal2Types,
-  NanceArchiveProposal: archiveTypes,
-} as const as
-  Record<NanceSignatureTypes,
-    (typeof snapshotProposalTypes) |
-    (typeof snapshotCancelProposal2Types) |
-    (typeof archiveTypes)
-  >;
+export const nanceSignatureNames = [
+  "SnapshotSubmitProposal",
+  "SnapshotCancelProposal",
+  "NanceArchiveProposal",
+] as const;
 
-export const NanceSignaturePrimaryTypesMap = {
-  SnapshotSubmitProposal: "Proposal",
-  SnapshotCancelProposal: "CancelProposal",
-  NanceArchiveProposal: "Archive",
-} as const as Record<NanceSignatureTypes, AllSignatureTypes>;
+export type NanceSignatureNames = (typeof nanceSignatureNames)[number];
+
+const NancePrimaryTypeArchive = "Archive" as const;
+
+interface TypedDataField {
+  name: string;
+  type: string;
+};
+
+export type NanceSignatureMap = {
+  [key in NanceSignatureNames]: {
+    primaryType: string;
+    types: Record<string, Array<TypedDataField>>
+  }
+}
+
+export const nanceSignatureMap: NanceSignatureMap = {
+  SnapshotSubmitProposal: {
+    primaryType: SnapshotProposalPrimaryType,
+    types: snapshotProposalTypes
+  },
+  SnapshotCancelProposal: {
+    primaryType: SnapshotCancelProposalPrimaryType,
+    types: snapshotCancelProposal2Types
+  },
+  NanceArchiveProposal: {
+    primaryType: NancePrimaryTypeArchive,
+    types: archiveTypes
+  },
+} as const;
+
+type SignatureToMessageMap = {
+  SnapshotSubmitProposal: SnapshotProposal;
+  SnapshotCancelProposal: SnapshotCancelProposal;
+  NanceArchiveProposal: ArchiveProposal;
+};
+
+type MessageTypes = {
+  [K in NanceSignatureNames]: SignatureToMessageMap[K];
+};
+
+export type BasicNanceSignature = {
+  address: string;
+  type: NanceSignatureNames;
+  signature: string;
+  message: MessageTypes[NanceSignatureNames];
+}

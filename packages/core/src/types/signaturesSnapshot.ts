@@ -22,4 +22,5 @@ export type SnapshotDeleteProposalEnvelope = {
   }
 }
 
-export type SnapshotSignatureNames = "Proposal" | "CancelProposal";
+export const SnapshotProposalPrimaryType = "Proposal" as const;
+export const SnapshotCancelProposalPrimaryType = "CancelProposal" as const;
