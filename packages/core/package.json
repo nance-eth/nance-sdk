@@ -1,6 +1,6 @@
 {
   "name": "@nance/nance-sdk",
-  "version": "3.0.1-beta.1",
+  "version": "3.0.1-beta.2",
   "description": "SDK for https://nance.app",
   "license": "MIT",
   "module": "./dist/esm/index.js",

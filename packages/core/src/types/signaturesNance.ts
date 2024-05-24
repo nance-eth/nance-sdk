@@ -59,10 +59,12 @@ export type ArchiveProposal = {
 export const NanceSignatureTypesMap = {
   SnapshotSubmitProposal: snapshotProposalTypes,
   SnapshotCancelProposal: snapshotCancelProposal2Types,
+  NanceArchiveProposal: archiveTypes,
 } as const as
   Record<NanceSignatureTypes,
     (typeof snapshotProposalTypes) |
-    (typeof snapshotCancelProposal2Types)
+    (typeof snapshotCancelProposal2Types) |
+    (typeof archiveTypes)
   >;
 
 export const NanceSignaturePrimaryTypesMap = {
