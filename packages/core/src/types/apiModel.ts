@@ -4,9 +4,9 @@ import {
   GuildxyzConfig,
   NanceConfig,
   Proposal,
-  SignProposalEnvelope,
 } from "./common";
 import { DialogHandlerMessageIds, SQLSpaceConfig } from "./doltSchema";
+import { BasicNanceSignature } from "./signaturesNance";
 
 export interface APIResponse<T> {
   success: boolean;
@@ -88,14 +88,14 @@ export interface ProposalRequest extends BaseRequest {
   uuid: string;
 }
 
-export interface ProposalUploadRequest extends BaseRequest {
+export interface ProposalUploadRequest {
   proposal: Proposal;
-  envelope?: SignProposalEnvelope;
+  envelope?: BasicNanceSignature;
 }
 
-export interface ProposalUpdateRequest extends BaseRequest {
+export interface ProposalUpdateRequest {
   proposal: Proposal;
-  envelope?: SignProposalEnvelope;
+  envelope?: BasicNanceSignature;
 }
 
 export interface ConfigSpaceRequest extends BaseRequest {
@@ -114,8 +114,7 @@ export type ProposalUploadPayload = {
 
 export interface ProposalDeleteRequest {
   uuid: string;
-  address?: string;
-  signature?: string;
+  envelope?: BasicNanceSignature;
 }
 
 export type ConfigSpacePayload = {

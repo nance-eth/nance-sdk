@@ -13,6 +13,8 @@ import {
   ConfigSpacePayload,
   CreateFormValues,
   ProposalPacket,
+  ProposalDeleteRequest,
+  ProposalDeleteResponse,
 } from "@nance/nance-sdk";
 import { useContext } from "react";
 import { NanceContext } from "../contexts/NanceContext";
@@ -211,14 +213,17 @@ async function editor(
   return json;
 }
 
-async function deleter(url: RequestInfo | URL) {
+async function deleter(url: RequestInfo | URL,
+  { arg }: { arg: ProposalDeleteRequest }
+) {
   const res = await fetch(url, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify(arg),
   });
-  const json: APIResponse<ProposalUploadPayload> = await res.json();
+  const json: APIResponse<ProposalDeleteResponse> = await res.json();
   if (json.success === false) {
     throw new Error(
       `An error occurred while deleting this proposal: ${json?.error}`,

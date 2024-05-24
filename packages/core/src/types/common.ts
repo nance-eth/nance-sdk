@@ -1,7 +1,7 @@
 import {
-  Proposal as SnapshotSignProposal,
-  proposalTypes
-} from "./snapshot";
+  ProposalStatus,
+  GovernanceEvent,
+} from "../constants";
 
 export type JBSplitStruct = {
   preferClaimed: boolean;
@@ -49,16 +49,6 @@ export type Action = {
   uuid?: string;
   payload: Payout | Reserve | Transfer | CustomTransaction;
 };
-
-export type SignProposalEnvelope = {
-  address: string;
-  sig: string;
-  data: {
-    domain: { name: string; version: string; }
-    types: typeof proposalTypes;
-    message: SnapshotSignProposal;
-  }
-}
 
 // FUTURE
 // export type Currency = "USD" | "ETH";
@@ -212,28 +202,6 @@ export type DoltConfig = {
   repo: string;
 };
 
-export const GovernanceEventName = [
-  "Temperature Check",
-  "Snapshot Vote",
-  "Execution",
-  "Delay",
-  "Unknown",
-] as const;
-
-export type GovernanceEvent = (typeof GovernanceEventName)[number];
-
-export const ProposalStatusNames = [
-  "Draft",
-  "Discussion",
-  "Temperature Check",
-  "Voting",
-  "Approved",
-  "Cancelled",
-  "Archived",
-] as const;
-
-export type ProposalStatus = (typeof ProposalStatusNames)[number];
-
 export interface DateEvent {
   title: GovernanceEvent;
   start: string;
@@ -266,10 +234,3 @@ export type GuildxyzConfig = {
   id: number;
   roles: number[];
 };
-
-// match snapshot ingestor
-// https://github.com/snapshot-labs/snapshot-sequencer/blob/master/src/ingestor.ts#L17
-export const domain = {
-  name: "snapshot",
-  version: "0.1.4"
-}

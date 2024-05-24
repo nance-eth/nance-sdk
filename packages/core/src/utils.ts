@@ -36,7 +36,13 @@ export const getActionYamlFromBody = (body?: string): string | null => {
   return null;
 };
 
-export const formatSnapshotProposalMessage = (address: string, proposal: Proposal, space: string, voteStart: Date, voteEnd: Date): SnapshotTypes.Proposal => {
+export const formatSnapshotProposalMessage = (
+  address: string,
+  proposal: Proposal,
+  space: string,
+  voteStart: Date,
+  voteEnd: Date
+): SnapshotTypes.Proposal => {
   return {
     from: address,
     space,
@@ -51,5 +57,18 @@ export const formatSnapshotProposalMessage = (address: string, proposal: Proposa
     snapshot: 0, // TODO: snapshot block by date, maybe we just do it in client library since theres no provider in here
     plugins: JSON.stringify({}),
     app: "nance"
+  };
+}
+
+export const formatSnapshotDeleteProposalMessage = (
+  address: string,
+  space: string,
+  snapshotId: string
+): SnapshotTypes.CancelProposal => {
+  return {
+    from: address,
+    space,
+    timestamp: Math.floor(Date.now() / 1000),
+    proposal: snapshotId
   };
 }
