@@ -185,6 +185,7 @@ export interface NanceConfig {
     };
   };
   guildxyz?: GuildxyzConfig;
+  proposalSubmissionValidation?: ProposalSubmissionValidationSnapshot;
   proposalIdPrefix: string;
   dolt: DoltConfig;
   snapshot: {
@@ -194,6 +195,11 @@ export interface NanceConfig {
     passingRatio: number;
   };
   submitAsApproved?: boolean;
+}
+
+type ProposalSubmissionValidationSnapshot = {
+  type: "snapshot";
+  minBalance: number;
 }
 
 export type DoltConfig = {

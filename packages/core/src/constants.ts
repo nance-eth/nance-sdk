@@ -19,4 +19,3 @@ export const ProposalStatusNames = [
 ] as const;
 
 export type ProposalStatus = (typeof ProposalStatusNames)[number];
-
