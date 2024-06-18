@@ -1,7 +1,4 @@
-import {
-  ProposalStatus,
-  GovernanceEvent,
-} from "../constants";
+import { ProposalStatus, GovernanceEvent } from "../constants";
 
 export type JBSplitStruct = {
   preferClaimed: boolean;
@@ -11,7 +8,7 @@ export type JBSplitStruct = {
   beneficiary: string;
   lockedUntil: string;
   allocator: string;
-}
+};
 
 export interface Proposal {
   uuid: string;
@@ -37,17 +34,26 @@ export interface Proposal {
   threadSummary?: string;
 }
 
-export type NewProposal = Pick<Proposal,
-  "title" | "body" | "status" | "authorDiscordId" | "actions">;
+export type NewProposal = Pick<
+  Proposal,
+  "title" | "body" | "status" | "authorDiscordId" | "actions"
+>;
 
-export type UpdateProposal = Pick<Proposal,
-  "uuid" | "title" | "body" | "status" | "authorDiscordId">;
+export type UpdateProposal = Pick<
+  Proposal,
+  "uuid" | "title" | "body" | "status" | "authorDiscordId"
+>;
 
 export type Action = {
-  type: "Payout" | "Reserve" | "Transfer" | "Custom Transaction";
+  type:
+    | "Payout"
+    | "Reserve"
+    | "Transfer"
+    | "Custom Transaction"
+    | "Request Budget";
   name?: string;
   uuid?: string;
-  payload: Payout | Reserve | Transfer | CustomTransaction;
+  payload: Payout | Reserve | Transfer | CustomTransaction | RequestBudget;
 };
 
 // FUTURE
@@ -94,6 +100,25 @@ export type CustomTransaction = {
   functionName: string;
   args: CustomTransactionArg[];
   tenderlyId: string;
+};
+
+export type RequestBudget = {
+  projectTeam: {
+    discordUserId: string;
+    payoutAddress: string;
+    votingAddress: string;
+    isRocketeer: boolean;
+  }[];
+  multisigTeam: {
+    discordUserId: string;
+    address: string;
+  }[];
+  budget: {
+    token: string;
+    amount: string;
+    // justification is the reason/memo
+    justification: string;
+  }[];
 };
 
 export type SnapshotProposal = {
@@ -200,7 +225,7 @@ export interface NanceConfig {
 type ProposalSubmissionValidationSnapshot = {
   type: "snapshot";
   minBalance: number;
-}
+};
 
 export type DoltConfig = {
   enabled: boolean;
