@@ -180,6 +180,7 @@ export type FormTime = {
 
 export interface NanceConfig {
   name: string;
+  customDomain?: string;
   juicebox: {
     network: string;
     projectId: string;
