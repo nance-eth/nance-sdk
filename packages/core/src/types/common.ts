@@ -105,12 +105,14 @@ export type CustomTransaction = {
 export type RequestBudget = {
   projectTeam: {
     discordUserId: string;
+    discordUsername: string;
     payoutAddress: string;
     votingAddress: string;
     isRocketeer: boolean;
   }[];
   multisigTeam: {
     discordUserId: string;
+    discordUsername: string;
     address: string;
   }[];
   budget: {
@@ -226,6 +228,8 @@ export interface NanceConfig {
 type ProposalSubmissionValidationSnapshot = {
   type: "snapshot";
   minBalance: number;
+  metStatus: ProposalStatus;
+  notMetStatus: ProposalStatus;
 };
 
 export type DoltConfig = {
