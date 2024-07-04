@@ -12,6 +12,7 @@ export function NanceEditor(props: NanceEditorProps) {
     onEditorChange,
     initialValue,
     fileUploadIPFS,
+    fileUploadExternal,
     darkMode,
   } = props;
   
@@ -22,7 +23,7 @@ export function NanceEditor(props: NanceEditorProps) {
 
   React.useEffect(() => {
     if (ref?.current && fileUploadIPFS && !dropHandlerSetup) {
-      dropHandler(fileUploadIPFS, loadingBarFileSize);
+      dropHandler(loadingBarFileSize, fileUploadIPFS, fileUploadExternal);
       setDropHandlerSetup(true);
     }
   }, []);
@@ -43,8 +44,12 @@ export function NanceEditor(props: NanceEditorProps) {
         }}
         hooks={{
           addImageBlobHook(blob, cb) {
-            if (!fileUploadIPFS) return;
-            uploadBlob(blob, fileUploadIPFS, loadingBarFileSize).then((url) => cb(url));
+            if (fileUploadExternal) {
+              loadingBarFileSize(blob.size)
+              fileUploadExternal(blob).then((url) => cb(url));
+            } else if (fileUploadIPFS.auth) {
+              uploadBlob(blob, fileUploadIPFS, loadingBarFileSize).then((url) => cb(url));
+            } else return;
           },
         }}
         theme={darkMode ? "dark" : "light"}

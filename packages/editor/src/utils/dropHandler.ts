@@ -4,10 +4,10 @@ import { FileUploadIPFSProps } from "../types";
 import { ref } from "../ref";
 
 export const dropHandler = (
-  fileUploadIPFS: FileUploadIPFSProps,
-  loadingBarFileSize: (size: number) => void
+  loadingBarFileSize: (size: number) => void,
+  fileUploadIPFS?: FileUploadIPFSProps,
+  externalFileUpload?: (blob: Blob | File) => Promise<string>
 ) => {
-
 
   const handleFileDrop = async (e: DragEvent) => {
     e.preventDefault();
@@ -22,7 +22,12 @@ export const dropHandler = (
 
     // if pdf, upload to ipfs and insert link
     if (file && file.name.toLowerCase().endsWith(".pdf")) {
-      uploadBlob(file, fileUploadIPFS, loadingBarFileSize).then((url) => insertLink(url, file.name));
+      if (fileUploadIPFS.auth) {
+        uploadBlob(file, fileUploadIPFS, loadingBarFileSize).then((url) => insertLink(url, file.name));
+      } else if (externalFileUpload) {
+        loadingBarFileSize(file.size)
+        externalFileUpload(file)
+      } else return;
     }
   };
   window.addEventListener("drop", handleFileDrop);
