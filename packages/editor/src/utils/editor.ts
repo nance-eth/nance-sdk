@@ -6,7 +6,7 @@ export const getMarkdown: GetMarkdown = () => {
 };
 
 export const setMarkdown: SetMarkdown = (markdown) => {
-  ref?.current?.getInstance().setMarkdown(markdown);
+  ref?.current?.getInstance().setMarkdown(markdown, false);
 };
 
 export const insertLink = (url: string, text: string) => {
