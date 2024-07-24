@@ -1,4 +1,4 @@
-import { NanceConfig, JBSplitStruct, Action } from "./common";
+import { NanceConfig, JBSplitStruct, Action, ActionTracking } from "./common";
 
 export type SQLProposal = {
   uuid: string;
@@ -10,6 +10,7 @@ export type SQLProposal = {
   coauthors: string[];
   authorDiscordId?: string;
   proposalStatus: string;
+  actionStatus: ActionTracking[];
   proposalId?: number;
   temperatureCheckVotes: number[];
   snapshotId?: string;

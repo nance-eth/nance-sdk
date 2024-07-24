@@ -1,5 +1,5 @@
 import YAML from "yaml";
-import { Action, Proposal, SnapshotTypes } from "./types";
+import { Action, ActionV1, ActionV2, Proposal, SnapshotTypes } from "./types";
 
 const actionsHeader = "```nance-actions\n--- nance-actions\n";
 const actionsFooter = "\n```";
@@ -71,4 +71,13 @@ export const formatSnapshotDeleteProposalMessage = (
     timestamp: Math.floor(Date.now() / 1000),
     proposal: snapshotId
   };
+}
+
+// Type guards to differentiate between ActionV1 and ActionV2
+export function isActionV1(action: Action): action is ActionV1 {
+  return 'name' in action && !('pollRequired' in action);
+}
+
+export function isActionV2(action: Action): action is ActionV2 {
+  return 'pollRequired' in action && !('governanceCycles' in action);
 }

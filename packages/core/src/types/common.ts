@@ -1,4 +1,4 @@
-import { ProposalStatus, GovernanceEvent } from "../constants";
+import { ProposalStatus, GovernanceEvent, ActionStatus } from "../constants";
 
 export type JBSplitStruct = {
   preferClaimed: boolean;
@@ -19,7 +19,6 @@ export interface Proposal {
   lastEditedTime?: string;
   status: ProposalStatus;
   proposalId?: number;
-  author?: string;
   coauthors?: string[];
   discussionThreadURL: string;
   ipfsURL?: string;
@@ -44,33 +43,48 @@ export type UpdateProposal = Pick<
   "uuid" | "title" | "body" | "status" | "authorDiscordId"
 >;
 
-export type Action = {
+export type AddAction = {
   type:
     | "Payout"
     | "Reserve"
     | "Transfer"
     | "Custom Transaction"
     | "Request Budget";
-  name?: string;
-  uuid?: string;
+  uuid: string;
+  governanceCycles?: number[];
+  pollRequired?: boolean;
+  chainId?: number;
   payload: Payout | Reserve | Transfer | CustomTransaction | RequestBudget;
 };
 
-// FUTURE
-// export type Currency = "USD" | "ETH";
+export type Action = Omit<AddAction, "governanceCycles"> & {
+  actionTracking?: ActionTracking[];
+};
+
+export type ActionV1 = Omit<Action, "pollRequired" | "chainId" | "actionTracking">;
+export type ActionV2 = Omit<Action, "governanceCycles">;
+
+export type ActionTracking = {
+  governanceCycle: number;
+  status: ActionStatus;
+  pollId?: string;
+  transactionHash?: string;
+}
 
 export type Payout = {
+  // Common fields
   address?: string;
   allocator?: string;
   project?: number;
-  count: number;
-  governanceCycleStart: number;
-  amountUSD: number;
-  // FUTURE
-  // currency?: Currency;
-  // chainId?: number;
-  // amount?: string;
-  // governanceCycleEnd: number;
+
+  // PayoutV1
+  governanceCycleStart?: number;
+  count?: number | string;
+  amountUSD?: number | string;
+
+  // PayoutV2
+  amount?: number;
+  currency?: string;
 };
 
 export type Reserve = { splits: JBSplitStruct[] };
