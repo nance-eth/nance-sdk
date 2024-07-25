@@ -28,7 +28,7 @@ export interface Proposal {
   authorAddress?: string;
   authorDiscordId?: string;
   temperatureCheckVotes?: number[];
-  actions: Action[];
+  actions?: Action[];
   proposalSummary?: string;
   threadSummary?: string;
 }
@@ -43,7 +43,7 @@ export type UpdateProposal = Pick<
   "uuid" | "title" | "body" | "status" | "authorDiscordId"
 >;
 
-export type AddAction = {
+export type BodyAction = {
   type:
     | "Payout"
     | "Reserve"
@@ -54,10 +54,10 @@ export type AddAction = {
   governanceCycles?: number[];
   pollRequired?: boolean;
   chainId?: number;
-  payload: Payout | Reserve | Transfer | CustomTransaction | RequestBudget;
+  payload: PayoutV1 | Payout | Reserve | Transfer | CustomTransaction | RequestBudget;
 };
 
-export type Action = Omit<AddAction, "governanceCycles"> & {
+export type Action = Omit<BodyAction, "governanceCycles"> & {
   actionTracking?: ActionTracking[];
 };
 
@@ -72,19 +72,20 @@ export type ActionTracking = {
 }
 
 export type Payout = {
-  // Common fields
   address?: string;
   allocator?: string;
   project?: number;
+  amount: number;
+  currency: string;
+};
 
-  // PayoutV1
-  governanceCycleStart?: number;
-  count?: number | string;
-  amountUSD?: number | string;
-
-  // PayoutV2
-  amount?: number;
-  currency?: string;
+export type PayoutV1 = {
+  address?: string;
+  allocator?: string;
+  project?: number;
+  governanceCycleStart: number;
+  count: number;
+  amountUSD: number;
 };
 
 export type Reserve = { splits: JBSplitStruct[] };

@@ -10,7 +10,7 @@ export type SQLProposal = {
   coauthors: string[];
   authorDiscordId?: string;
   proposalStatus: string;
-  actionStatus: ActionTracking[];
+  actionTracking?: ActionTracking[];
   proposalId?: number;
   temperatureCheckVotes: number[];
   snapshotId?: string;
@@ -74,8 +74,6 @@ export type SQLReserve = {
   splits: JBSplitStruct[];
   reserveStatus: string;
 };
-
-export type SQLExtended = SQLProposal;
 
 export type DialogHandlerMessageIds = {
   temperatureCheckRollup: string;

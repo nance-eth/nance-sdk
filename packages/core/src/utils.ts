@@ -1,5 +1,10 @@
 import YAML from "yaml";
-import { Action, ActionV1, ActionV2, Proposal, SnapshotTypes } from "./types";
+import {
+  Action,
+  BodyAction,
+  Proposal,
+  SnapshotTypes
+} from "./types";
 
 const actionsHeader = "```nance-actions\n--- nance-actions\n";
 const actionsFooter = "\n```";
@@ -9,7 +14,7 @@ export const actionsToYaml = (actions?: Action[]): string => {
   return `${actionsHeader}${YAML.stringify(actions, { keepUndefined: true })}${actionsFooter}`;
 };
 
-export const getActionsFromBody = (body?: string): Action[] | null => {
+export const getActionsFromBody = (body?: string): BodyAction[] | null => {
   if (!body) return null;
   const regex = new RegExp(`(?<=${actionsHeader})([\\s\\S]*?)(?=${actionsFooter})`, "g");
   const matches = body.match(regex);
@@ -73,11 +78,6 @@ export const formatSnapshotDeleteProposalMessage = (
   };
 }
 
-// Type guards to differentiate between ActionV1 and ActionV2
-export function isActionV1(action: Action): action is ActionV1 {
-  return 'name' in action && !('pollRequired' in action);
-}
-
-export function isActionV2(action: Action): action is ActionV2 {
-  return 'pollRequired' in action && !('governanceCycles' in action);
+export function isActionV2(action: Action): boolean {
+  return Object.keys(action).includes('governanceCycles');
 }
