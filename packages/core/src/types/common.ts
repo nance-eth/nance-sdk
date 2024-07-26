@@ -53,7 +53,7 @@ export type BodyAction = {
   uuid: string;
   governanceCycles?: number[];
   pollRequired?: boolean;
-  chainId?: number;
+  chainId: number;
   payload: PayoutV1 | Payout | Reserve | Transfer | CustomTransaction | RequestBudget;
 };
 
@@ -92,7 +92,6 @@ export type Reserve = { splits: JBSplitStruct[] };
 
 export type Transfer = {
   contract: string; // if doing native transfer, contract is recipient address
-  chainId: number;
   to: string;
   amount: string;
   decimals: number;
@@ -107,7 +106,6 @@ export type CustomTransactionArg = {
 
 export type CustomTransaction = {
   contract: string;
-  chainId: number;
   value: string;
   // function approve(address guy, uint256 wad) returns (bool)
   // can pass as ABI

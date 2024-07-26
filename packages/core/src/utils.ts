@@ -2,6 +2,8 @@ import YAML from "yaml";
 import {
   Action,
   BodyAction,
+  Payout,
+  PayoutV1,
   Proposal,
   SnapshotTypes
 } from "./types";
@@ -80,4 +82,20 @@ export const formatSnapshotDeleteProposalMessage = (
 
 export function isActionV2(action: Action): boolean {
   return Object.keys(action).includes('governanceCycles');
+}
+
+export function getPayoutCountAmount(action: Action): { count: number; amount: number } {
+  let payload: Payout | PayoutV1;
+  let count: number;
+  let amount: number;
+  if (isActionV2(action)) {
+    payload = action.payload as Payout;
+    count = action.actionTracking?.length || 0;
+    amount = payload.amount;
+  } else {
+    payload = action.payload as PayoutV1;
+    count = Number(payload.count);
+    amount = Number(payload.amountUSD);
+  }
+  return { count, amount };
 }
