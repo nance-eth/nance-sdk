@@ -10,7 +10,7 @@ export type SQLProposal = {
   coauthors: string[];
   authorDiscordId?: string;
   proposalStatus: string;
-  actionTracking?: ActionTracking[];
+  actionTracking?: ActionTracking[][];
   proposalId?: number;
   temperatureCheckVotes: number[];
   snapshotId?: string;

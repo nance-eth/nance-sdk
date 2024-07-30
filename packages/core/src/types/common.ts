@@ -57,12 +57,9 @@ export type BodyAction = {
   payload: PayoutV1 | Payout | Reserve | Transfer | CustomTransaction | RequestBudget;
 };
 
-export type Action = Omit<BodyAction, "governanceCycles"> & {
-  actionTracking?: ActionTracking[];
-};
+export type Action = BodyAction & { actionTracking?: ActionTracking[] }
 
 export type ActionV1 = Omit<Action, "pollRequired" | "chainId" | "actionTracking">;
-export type ActionV2 = Omit<Action, "governanceCycles">;
 
 export type ActionTracking = {
   governanceCycle: number;
