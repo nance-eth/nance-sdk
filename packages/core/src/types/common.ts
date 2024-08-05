@@ -193,6 +193,7 @@ export type FormTime = {
 export interface NanceConfig {
   name: string;
   customDomain?: string;
+  allowCurrentCycleSubmission: boolean;
   juicebox: {
     network: string;
     projectId: string;
