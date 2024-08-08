@@ -90,7 +90,7 @@ export function getPayoutCountAmount(action: Action): { count: number; amount: n
   let amount: number;
   if (isActionV2(action)) {
     payload = action.payload as Payout;
-    count = action.actionTracking?.length || 0;
+    count = action.governanceCycles?.length || 1;
     amount = payload.amount;
   } else {
     payload = action.payload as PayoutV1;
