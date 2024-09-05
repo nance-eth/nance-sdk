@@ -15,6 +15,7 @@ import {
   ProposalPacket,
   ProposalDeleteRequest,
   ProposalDeleteResponse,
+  ActionPacket,
 } from "@nance/nance-sdk";
 import { useContext } from "react";
 import { NanceContext } from "../contexts/NanceContext";
@@ -271,4 +272,16 @@ export async function fetchCreatedProposals(
   }
 
   return json;
+}
+
+export function useActions(
+  space: string,
+  shouldFetch: boolean = true,
+) {
+  const { apiUrl } = useContext(NanceContext);
+
+  return useSWR<APIResponse<ActionPacket[]>, string>(
+    shouldFetch ? `${apiUrl}/${space}` : null,
+    jsonFetcher(),
+  );
 }

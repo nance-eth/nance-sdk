@@ -297,21 +297,21 @@
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
 "@nance/nance-editor@file:/Users/eddie/web3/nance-super/nance-sdk/packages/editor":
-  version "1.7.0"
+  version "1.8.2"
   resolved "file:packages/editor"
   dependencies:
     "@toast-ui/react-editor" "^3.2.3"
 
 "@nance/nance-hooks@file:/Users/eddie/web3/nance-super/nance-sdk/packages/react":
-  version "3.1.0"
+  version "4.0.4"
   resolved "file:packages/react"
   dependencies:
     "@nance/nance-sdk" "^3.1.0"
     swr "^2.2.4"
     tslib "^2.6.2"
 
-"@nance/nance-sdk@^3.1.0", "@nance/nance-sdk@file:/Users/eddie/web3/nance-super/nance-sdk/packages/core":
-  version "3.1.0"
+"@nance/nance-sdk@^4.0.5", "@nance/nance-sdk@file:/Users/eddie/web3/nance-super/nance-sdk/packages/core":
+  version "4.0.5"
   resolved "file:packages/core"
   dependencies:
     tslib "^2.6.2"

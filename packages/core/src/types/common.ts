@@ -65,6 +65,7 @@ export type ActionTracking = {
   governanceCycle: number;
   status: ActionStatus;
   pollId?: string;
+  pollResults?: number[];
   transactionHash?: string;
 }
 

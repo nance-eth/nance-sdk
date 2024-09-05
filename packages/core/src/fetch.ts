@@ -6,6 +6,7 @@ import {
   ProposalsRequest,
   SpaceConfig,
   SpaceInfo,
+  ActionsQueryResponse,
 } from "./types";
 
 const DEFAULT_API_GATEWAY = "https://api.nance.app";
@@ -100,6 +101,21 @@ export function getProposal(
 ) {
   return genericFetchAndThrowIfError<ProposalPacket>(
     `/${args.space}/proposal/${args.uuid}`,
+    gateway,
+  );
+}
+
+/**
+  * Get actions of single space
+  * @param spaceName - the name of space you want to query
+  * @param gateway - gateway url to send request, defaults to DEFAULT_API_GATEWAY
+  */
+export async function getActions(
+  spaceName: string,
+  gateway: string = DEFAULT_API_GATEWAY,
+) {
+  return genericFetchAndThrowIfError<ActionsQueryResponse>(
+    `/${spaceName}/actions`,
     gateway,
   );
 }

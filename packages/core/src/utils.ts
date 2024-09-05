@@ -5,8 +5,8 @@ import {
   Payout,
   PayoutV1,
   Proposal,
-  SnapshotTypes
 } from "./types";
+import * as SnapshotTypes from "./types/snapshot";
 
 const actionsHeader = "```nance-actions\n--- nance-actions\n";
 const actionsFooter = "\n```";
@@ -91,7 +91,7 @@ export function getPayoutCountAmount(action: Action): { count: number; amount: n
   if (isActionV2(action)) {
     payload = action.payload as Payout;
     count = action.governanceCycles?.length || 1;
-    amount = payload.amount;
+    amount = Number(payload.amount);
   } else {
     payload = action.payload as PayoutV1;
     count = Number(payload.count);

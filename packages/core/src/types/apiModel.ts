@@ -1,4 +1,5 @@
 import {
+  Action,
   DateEvent,
   GovernanceCycleForm,
   GuildxyzConfig,
@@ -58,6 +59,15 @@ export type ProposalsPacket = {
 
 export type ProposalPacket = Proposal & { proposalInfo: ProposalInfo };
 
+export type ActionPacket = {
+  action: Action;
+  proposal: {
+    id: number;
+    title: string;
+  }
+}
+
+export type ActionsQueryResponse = APIResponse<ActionPacket[]>;
 export type ProposalsQueryResponse = APIResponse<ProposalsPacket>;
 export type ProposalQueryResponse = APIResponse<ProposalPacket>;
 export type SpaceInfoResponse = APIResponse<SpaceInfo>;
