@@ -49,17 +49,28 @@ export type BodyAction = {
     | "Reserve"
     | "Transfer"
     | "Custom Transaction"
-    | "Request Budget";
+    | "Request Budget"
+    | "Cancel";
   uuid: string;
   governanceCycles?: number[];
   pollRequired?: boolean;
   chainId: number;
-  payload: PayoutV1 | Payout | Reserve | Transfer | CustomTransaction | RequestBudget;
+  payload:
+    | PayoutV1
+    | Payout
+    | Reserve
+    | Transfer
+    | CustomTransaction
+    | RequestBudget
+    | Cancel;
 };
 
-export type Action = BodyAction & { actionTracking?: ActionTracking[] }
+export type Action = BodyAction & { actionTracking?: ActionTracking[] };
 
-export type ActionV1 = Omit<Action, "pollRequired" | "chainId" | "actionTracking">;
+export type ActionV1 = Omit<
+  Action,
+  "pollRequired" | "chainId" | "actionTracking"
+>;
 
 export type ActionTracking = {
   governanceCycle: number;
@@ -67,7 +78,7 @@ export type ActionTracking = {
   pollId?: string;
   pollResults?: number[];
   transactionHash?: string;
-}
+};
 
 export type Payout = {
   address?: string;
@@ -132,6 +143,11 @@ export type RequestBudget = {
     // justification is the reason/memo
     justification: string;
   }[];
+};
+
+export type Cancel = {
+  targetActionUuid: string;
+  targetActionDescription: string;
 };
 
 export type SnapshotProposal = {
