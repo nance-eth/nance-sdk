@@ -81,7 +81,7 @@ export const formatSnapshotDeleteProposalMessage = (
 }
 
 export function isActionV2(action: Action): boolean {
-  return Object.keys(action).includes('governanceCycles');
+  return !!action.governanceCycles || !!action.pollRequired;
 }
 
 export function getPayoutCountAmount(action: Action): { count: number; amount: number } {

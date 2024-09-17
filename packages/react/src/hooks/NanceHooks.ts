@@ -281,7 +281,7 @@ export function useActions(
   const { apiUrl } = useContext(NanceContext);
 
   return useSWR<APIResponse<ActionPacket[]>, string>(
-    shouldFetch ? `${apiUrl}/${space}` : null,
+    shouldFetch ? `${apiUrl}/${space}/actions` : null,
     jsonFetcher(),
   );
 }
