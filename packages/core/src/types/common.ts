@@ -224,6 +224,7 @@ export interface NanceConfig {
       governance: string;
     };
     channelIds: {
+      ideas?: string;
       proposals: string;
       bookkeeping: string;
       transactions: string;

@@ -285,3 +285,29 @@ export function useActions(
     jsonFetcher(),
   );
 }
+
+export function useGetOrRefreshProposalDiscussion(
+  space: string,
+  uuid: string,
+  shouldFetch: boolean = true
+) {
+  const { apiUrl } = useContext(NanceContext);
+  const url = shouldFetch ? `${apiUrl}/${space}/proposal/${uuid}/discussion` : null;
+
+  const { data, error, mutate } = useSWR<APIResponse<void>>(url, jsonFetcher());
+
+  const refreshDiscussion = async () => {
+    try {
+      await mutate();
+    } catch (error) {
+      console.error("Error refreshing proposal discussion:", error);
+    }
+  };
+
+  return {
+    data,
+    error,
+    isLoading: !error && !data,
+    refreshDiscussion
+  };
+}

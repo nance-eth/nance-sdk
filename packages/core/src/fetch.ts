@@ -119,3 +119,20 @@ export async function getActions(
     gateway,
   );
 }
+
+/**
+  * Start or refresh Discord Discussion message
+  * @param spaceName - the name of space you want to query
+  * @param uuid - proposal uuid
+  * @param gateway - gateway url to send request, defaults to DEFAULT_API_GATEWAY
+*/
+export async function getOrRefreshProposalDiscussion(
+  spaceName: string,
+  uuid: string,
+  gateway: string = DEFAULT_API_GATEWAY,
+) {
+  return genericFetchAndThrowIfError<void>(
+    `/${spaceName}/proposal/${uuid}/discussion`,
+    gateway,
+  );
+}
