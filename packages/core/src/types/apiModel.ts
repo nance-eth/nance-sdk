@@ -4,7 +4,9 @@ import {
   GovernanceCycleForm,
   GuildxyzConfig,
   NanceConfig,
+  NewProposal,
   Proposal,
+  UpdateProposal,
 } from "./common";
 import { DialogHandlerMessageIds, SQLSpaceConfig } from "./doltSchema";
 import { BasicNanceSignature } from "./signaturesNance";
@@ -99,12 +101,12 @@ export interface ProposalRequest extends BaseRequest {
 }
 
 export interface ProposalUploadRequest {
-  proposal: Proposal;
+  proposal: NewProposal;
   envelope?: BasicNanceSignature;
 }
 
 export interface ProposalUpdateRequest {
-  proposal: Proposal;
+  proposal: UpdateProposal;
   envelope?: BasicNanceSignature;
 }
 

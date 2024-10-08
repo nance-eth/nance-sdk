@@ -20,7 +20,7 @@ export interface Proposal {
   status: ProposalStatus;
   proposalId?: number;
   coauthors?: string[];
-  discussionThreadURL: string;
+  discussionThreadURL?: string;
   ipfsURL?: string;
   voteURL?: string;
   voteSetup?: SnapshotVoteSetupOptions;
@@ -33,15 +33,24 @@ export interface Proposal {
   threadSummary?: string;
 }
 
-export type NewProposal = Pick<
-  Proposal,
-  "title" | "body" | "status" | "authorDiscordId" | "actions"
->;
+export type NewProposal = {
+  title: string;
+  body: string;
+  status: ProposalStatus;
+  coauthors?: string[];
+  voteSetup?: SnapshotVoteSetupOptions;
+  authorDiscordId?: string;
+}
 
-export type UpdateProposal = Pick<
-  Proposal,
-  "uuid" | "title" | "body" | "status" | "authorDiscordId"
->;
+export type UpdateProposal = {
+  uuid: string;
+  title?: string;
+  body?: string;
+  status: ProposalStatus;
+  coauthors?: string[];
+  voteSetup?: SnapshotVoteSetupOptions;
+  authorDiscordId?: string;
+}
 
 export type BodyAction = {
   type:
@@ -107,7 +116,6 @@ export type Transfer = {
 };
 
 export type CustomTransactionArg = {
-  id: string;
   value: string;
   type: string;
   name: string;
