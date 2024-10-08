@@ -37,7 +37,6 @@ export type NewProposal = {
   title: string;
   body: string;
   status: ProposalStatus;
-  coauthors?: string[];
   voteSetup?: SnapshotVoteSetupOptions;
   authorDiscordId?: string;
 }
@@ -47,7 +46,6 @@ export type UpdateProposal = {
   title?: string;
   body?: string;
   status: ProposalStatus;
-  coauthors?: string[];
   voteSetup?: SnapshotVoteSetupOptions;
   authorDiscordId?: string;
 }
