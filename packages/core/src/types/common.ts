@@ -114,6 +114,7 @@ export type Transfer = {
 };
 
 export type CustomTransactionArg = {
+  id?: string;
   value: string;
   type: string;
   name: string;

@@ -88,6 +88,7 @@ export type DialogHandlerMessageIds = {
 export type SQLSpaceConfig = {
   space: string;
   displayName?: string;
+  avatar?: string;
   spaceOwners: string[];
   cid: string;
   config: NanceConfig;

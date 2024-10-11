@@ -2,7 +2,6 @@ import {
   Action,
   DateEvent,
   GovernanceCycleForm,
-  GuildxyzConfig,
   NanceConfig,
   NewProposal,
   Proposal,
@@ -20,6 +19,7 @@ export interface APIResponse<T> {
 export type SpaceInfo = {
   name: string;
   displayName: string;
+  avatarURL: string;
   currentCycle: number;
   currentCycleDay: number;
   cycleStartDate: string;
@@ -35,7 +35,6 @@ export type SpaceInfo = {
   }
   dolthubLink: string;
   nextProposalId: number;
-  guildxyz?: GuildxyzConfig;
 };
 
 export type SpaceInfoExtended = Omit<SpaceInfo, "nextProposalId" | "dolthubLink"> & {
