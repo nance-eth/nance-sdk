@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@nance/nance-sdk@^4.0.5":
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/@nance/nance-sdk/-/nance-sdk-4.0.5.tgz#140f0d26c063e0b4868df5dd112ceb4cb2ff480f"
-  integrity sha512-DstxVUtxMTGu4z/rnDrs2xY6RuG6JCvXfoWpzQ+fP0wcamPL6gRq1MGVWWerxketmO8za+2QCkHXwzcRyFgisQ==
+"@nance/nance-sdk@^4.1.3":
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/@nance/nance-sdk/-/nance-sdk-4.1.3.tgz#cb62600a6b18feb9823a6a661ca46df6d4196d9e"
+  integrity sha512-kjkPIctrk1cc5MflcAsrncXSmmPMTZ1RgOBOF21qvkUFxcnyEQT2kcScW9I6+QZB6wuwghCTT/bYoIcHsG15Bg==
   dependencies:
     tslib "^2.6.2"
     yaml "^2.4.2"

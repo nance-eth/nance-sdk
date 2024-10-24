@@ -80,6 +80,7 @@ export type DialogHandlerMessageIds = {
   voteRollup: string;
   voteQuorumAlert: string;
   voteEndAlert: string;
+  voteOneDayEndAlert: string;
   voteResultsRollup: string;
   temperatureCheckStartAlert: string;
   temperatureCheckEndAlert: string;
