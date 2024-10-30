@@ -5,6 +5,7 @@ import {
   NanceConfig,
   NewProposal,
   Proposal,
+  ProposalSubmissionValidationSnapshot,
   UpdateProposal,
 } from "./common";
 import { DialogHandlerMessageIds, SQLSpaceConfig } from "./doltSchema";
@@ -35,6 +36,7 @@ export type SpaceInfo = {
   }
   dolthubLink: string;
   nextProposalId: number;
+  proposalSubmissionValidation?: ProposalSubmissionValidationSnapshot;
 };
 
 export type SpaceInfoExtended = Omit<SpaceInfo, "nextProposalId" | "dolthubLink"> & {
@@ -47,6 +49,7 @@ type ProposalInfo = {
   snapshotSpace: string;
   proposalIdPrefix: string;
   minTokenPassingAmount: number;
+  minVotingPowerSubmissionBalance?: number;
   nextProposalId: number;
 };
 

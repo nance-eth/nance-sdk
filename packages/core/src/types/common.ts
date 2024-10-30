@@ -261,7 +261,7 @@ export interface NanceConfig {
   submitAsApproved?: boolean;
 }
 
-type ProposalSubmissionValidationSnapshot = {
+export type ProposalSubmissionValidationSnapshot = {
   type: "snapshot";
   minBalance: number;
   metStatus: ProposalStatus;
