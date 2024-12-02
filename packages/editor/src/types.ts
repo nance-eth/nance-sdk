@@ -14,6 +14,7 @@ type NanceEditorProps = {
   fileUploadIPFS?: FileUploadIPFSProps;
   fileUploadExternal?: (blob: Blob | File) => Promise<string>;
   darkMode?: boolean;
+  height?: string;
 };
 
 type GetMarkdown = () => string | null;

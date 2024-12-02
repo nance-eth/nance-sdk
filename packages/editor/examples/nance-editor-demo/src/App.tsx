@@ -20,6 +20,7 @@ function App() {
           auth: "Basic ..."
         }}
         darkMode={darkMode}
+        height="200px"
       />
     </div>
   );

@@ -14,8 +14,9 @@ export function NanceEditor(props: NanceEditorProps) {
     fileUploadIPFS,
     fileUploadExternal,
     darkMode,
+    height = "600px",
   } = props;
-  
+
   const {
     Component: LoadingBar,
     loadingBarFileSize,
@@ -36,7 +37,7 @@ export function NanceEditor(props: NanceEditorProps) {
         usageStatistics={false}
         initialValue={initialValue || " "}
         previewStyle="tab"
-        height="600px"
+        height={height}
         initialEditType="wysiwyg"
         useCommandShortcut={true}
         onChange={() => {
