@@ -52,24 +52,24 @@ export type UpdateProposal = {
 
 export type BodyAction = {
   type:
-    | "Payout"
-    | "Reserve"
-    | "Transfer"
-    | "Custom Transaction"
-    | "Request Budget"
-    | "Cancel";
+  | "Payout"
+  | "Reserve"
+  | "Transfer"
+  | "Custom Transaction"
+  | "Request Budget"
+  | "Cancel";
   uuid: string;
   governanceCycles?: number[];
   pollRequired?: boolean;
   chainId: number;
   payload:
-    | PayoutV1
-    | Payout
-    | Reserve
-    | Transfer
-    | CustomTransaction
-    | RequestBudget
-    | Cancel;
+  | PayoutV1
+  | Payout
+  | Reserve
+  | Transfer
+  | CustomTransaction
+  | RequestBudget
+  | Cancel;
 };
 
 export type Action = BodyAction & { actionTracking?: ActionTracking[] };
@@ -132,18 +132,6 @@ export type CustomTransaction = {
 };
 
 export type RequestBudget = {
-  projectTeam: {
-    discordUserId: string;
-    discordUsername: string;
-    payoutAddress: string;
-    votingAddress: string;
-    isRocketeer: boolean;
-  }[];
-  multisigTeam: {
-    discordUserId: string;
-    discordUsername: string;
-    address: string;
-  }[];
   budget: {
     token: string;
     amount: string;
