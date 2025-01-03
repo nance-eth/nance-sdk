@@ -40,6 +40,10 @@ export function NanceEditor(props: NanceEditorProps) {
         height={height}
         initialEditType="wysiwyg"
         useCommandShortcut={true}
+        referenceDefinition={true}
+        onBeforeConvertWysiwygToMarkdown={(md: string) => {
+          return md.replace(/\\(_)/g, "$1"); // Remove escaped underscores
+        }}
         onChange={() => {
           if (onEditorChange) onEditorChange(getMarkdown());
         }}
