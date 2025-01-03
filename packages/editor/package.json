@@ -1,6 +1,6 @@
 {
   "name": "@nance/nance-editor",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "description": "proposal editor https://nance.app",
   "license": "MIT",
   "module": "./lib/esm/index.js",
@@ -11,7 +11,8 @@
     "lib/**/*"
   ],
   "scripts": {
-    "build": "rm -rf lib && rollup -c"
+    "build": "rm -rf lib && rollup -c",
+    "publish": "yarn --access public"
   },
   "repository": {
     "type": "git",
