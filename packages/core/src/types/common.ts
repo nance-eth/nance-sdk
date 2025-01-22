@@ -258,7 +258,7 @@ export type ProposalSubmissionValidationSnapshot = {
 export type DoltConfig = {
   enabled: boolean;
   owner: string;
-  repo: string;
+  repo: string | null;
 };
 
 export interface DateEvent {
