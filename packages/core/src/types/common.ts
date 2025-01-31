@@ -208,39 +208,39 @@ export interface NanceConfig {
   allowCurrentCycleSubmission: boolean;
   juicebox: {
     network: string;
-    projectId: string | null;
-    gnosisSafeAddress: string | null;
-    governorAddress?: string;
+    projectId: string;
+    gnosisSafeAddress: string;
+    governorAddress: string;
   };
   discord: {
     API_KEY: string;
-    guildId: string | null;
+    guildId: string;
     roles: {
-      governance: string | null;
+      governance: string;
     };
     channelIds: {
       ideas?: string;
-      proposals: string | null;
-      bookkeeping: string | null;
-      transactions: string | null;
+      proposals: string;
+      bookkeeping: string;
+      transactions: string;
     };
     poll: {
       minYesVotes: number;
       yesNoRatio: number;
-      verifyRole?: string;
+      verifyRole: string;
     };
     reminder: {
-      type?: string;
-      channelIds: string[] | null;
-      imagesCID: string | null;
-      imageNames: string[] | null;
+      type: string;
+      channelIds: string[];
+      imagesCID: string;
+      imageNames: string[];
     };
   };
   proposalSubmissionValidation?: ProposalSubmissionValidationSnapshot;
-  proposalIdPrefix: string | null;
+  proposalIdPrefix: string;
   dolt: DoltConfig;
   snapshot: {
-    space: string | null;
+    space: string;
     choices: string[];
     minTokenPassingAmount: number;
     passingRatio: number;
@@ -258,7 +258,7 @@ export type ProposalSubmissionValidationSnapshot = {
 export type DoltConfig = {
   enabled: boolean;
   owner: string;
-  repo: string | null;
+  repo: string;
 };
 
 export interface DateEvent {
